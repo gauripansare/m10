@@ -1,0 +1,442 @@
+.no-focus *{
+    outline:none;
+}
+.disabled {
+    cursor: not-allowed !important;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.enabled {
+    cursor: pointer;
+    opacity: 1;
+}
+/*intro-content CSS Start */
+.intro-content {
+    float: left;
+    padding-bottom: 10px;
+    margin: 0 10%;
+}
+
+
+
+#climate-deal {
+    width: 50%;
+    float: left;
+    margin: 22px 2%;
+}
+
+.intro-content .intro-p p {
+    margin-top: 0px;
+}
+
+.question_txt p {
+    display: -webkit-inline-box;
+    padding-left: 10px;
+}
+
+.question-band .qheight {
+    margin-top: 20px;
+}
+
+/*intro-content CSS End */
+
+
+
+/*Question Css*/
+
+.continuebtn {
+    margin-bottom: 10px;
+    display: flex;
+    /*justify-content: center;*/
+}
+
+.questionband {
+    float: left;
+}
+
+    .questionband input[type='text'], .questionband input[type='number'] {
+        text-align: center;
+        width: 100px;
+    }
+
+.previous, .next {
+    padding-bottom: 15px;
+}
+
+.question_icon {
+    float: left;
+    width: 60px;
+    margin-top: 10px;
+}
+
+    .question_icon span {
+        border-radius: 30px;
+        background: #007AA2;
+        color: #FFF;
+        font-size: 20px;
+        padding: 12px 22px 15px 22px;
+    }
+
+.question_txt {
+    margin-left: 60px;
+    cursor: pointer;
+}
+
+.optionselected {
+    background-color:#f1f1f1;
+     font-weight : bold;
+}
+
+    .optionselected span {
+        background-color:#003058;
+        color: #F9FF00;
+    }
+/*Question Css*/
+
+.wrapperimage {
+    width: 798px;
+    height: auto;
+    position: relative;
+    display:flexbox;
+    justify-content:center
+}
+
+.activityimg {
+    width: 796px;
+    border:1px solid #cccccc;
+}
+
+.activityContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 35px 0 10px 0;
+    background: #F0F0F0;
+    float: left;
+    width: 100%;
+}
+
+.input-url {
+    width: 335px;
+    height: 19px;
+    position: absolute;
+    top: 137px;
+    left: 230px;
+    padding-left:5px;
+}
+
+.textentryreview {
+    width: 367px;
+    height: 25px;
+    position: absolute;
+    top: 170px;
+    left: 203px;
+    display: none;
+    background: #fff;
+}
+
+
+.divHotSpot, .divHotSpotDbClick {
+    position: absolute;
+    cursor: pointer;
+    background: transparent;
+    outline: none;
+    border: none;
+}
+
+.divreviewsubmit{
+    display: flex;
+    justify-content: center
+}
+.activity {
+    overflow: auto;
+}
+
+#div_feedback {
+    display: none;  
+    height: auto;
+    border-top: 1px solid #cdcdcd;
+    border-bottom: 1px solid #cdcdcd;
+    /* background: #F0F0F0;    */
+    width: 100%;
+}
+
+.div_fdkcontent {
+    margin: 0 10%;
+}
+
+.greenspan {
+    color: #01662C;
+    font-weight: bold;
+}
+
+.start-btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+}
+.hotspotclicked{
+    background-color:#33A7C0;
+    opacity:0.5
+}
+
+.textentryreview1{
+    top:135px !important;
+}
+.textentryreview2{
+    top:170px !important;
+}
+.divHotSpotDbl {
+    position:absolute;
+    cursor:pointer;
+     background: transparent;
+    outline: none;
+    border: none;
+}
+
+.activityContainer {
+    -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -khtml-user-select: none; /* webkit (konqueror) browsers */
+    -ms-user-select: none; /* IE10+ */
+}
+
+/*assessment css */
+.inputcircle{
+    position: relative;
+        padding-left: 6px;
+        cursor: pointer;
+        color: gray;
+        left: -25px;
+    }
+    
+    .inputcircle:after {
+        content: '';
+        width: 23px;
+        height: 23px;
+        border: 2px solid;
+        position: absolute;
+        left: 0px;
+        margin-top: 0%;
+        border-radius: 100%;
+        -ms-border-radius: 100%;
+        -moz-border-radius: 100%;
+        -webkit-border-radius: 100%;
+        box-sizing: border-box;
+        -ms-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+    }
+    
+    .assessmentradio:checked + .inputcircle:before {
+        content: '';   
+        height: 15px;
+        width: 15px;
+        position: absolute;
+        background: #047a9c;
+        left: 4px;
+        margin-top: 4px;
+        border-radius: 100%;
+        -ms-border-radius: 100%;
+        -moz-border-radius: 100%;
+        -webkit-border-radius: 100%;
+    }
+    
+    .assessmentradio:checked + .inputcircle {
+        color: #047a9c;
+    }
+    
+    #questioninnerwrapper.inputcircle , #Summary.inputcircle {
+        position: relative;
+        padding-left: 6px;
+        cursor: pointer;
+        color: gray;
+        left: -22px;
+    }
+    .assessmentradio {
+        opacity: 0;
+    }
+    
+    .assessmentradio{
+    position: absolute;
+        margin-left: -10px;
+        cursor: pointer;
+    }
+    .questionfdk{
+        display: none;
+    }
+    .iscorrect{
+        position: absolute;
+        left: -43px;
+    }
+    /* outlook css starts here*/
+    table.mail {
+        border-collapse: collapse;
+        border-spacing: 0;
+        font-family: Calibri;
+        font-size: 12px;
+        font-weight: 500;
+        cursor: default;
+    }
+    
+    .mail th, .mail td {
+        padding: 3px;
+    }
+    
+    .mail tr {
+        color: #222;
+    }
+    
+        .mail tr.unread {
+            font-weight: 700;
+        }
+    
+        .mail tr:hover, .mail tr.selected {
+            background-color: #d7e4f8;
+        }
+    
+        .mail tr.read td:first-child {
+            background: url(../assets/images/mailicons.png) no-repeat scroll 0 2px;
+            background-size: 340% 85%;;
+        }
+    
+        .mail tr.unread td:first-child {
+            background: url(../assets/images/mailicons.png) no-repeat scroll -36px 3px;
+            background-size: 400% 90%;
+        }
+    
+        .mail tr.replied td:first-child {
+            background: url(../assets/images/mailicons.png) no-repeat scroll -18px 2px;
+            background-size: 400% 90%;
+        }
+    
+        .mail tr.attach td:nth-child(2) {
+            background: url(../assets/images/mailicons.png) no-repeat scroll -65px 3px;
+            background-size: 700% 90%;
+        }
+    
+        .mail tr a {
+            color: inherit;
+        }
+
+        .input-to-addr {
+            width: 85%;
+            height: 10px;
+            position: absolute;
+            top: 132px;
+            left: 105px;
+            padding-left: 5px;
+            font-size: 10px;
+        }
+        
+        .input-cc-addr {
+            width: 85%;
+            height: 10px;
+            position: absolute;
+            top: 155px;
+            left: 105px;
+            padding-left: 5px;
+            font-size: 10px;
+        }
+        
+        .input-bcc-addr {
+            width: 85%;
+            height: 10px;
+            position: absolute;
+            top: 178px;
+            left: 105px;
+            padding-left: 5px;
+            font-size: 10px;
+        }
+
+        .input-subj {
+            width: 85%;
+            height: 12px;
+            position: absolute;
+            top: 200px;
+            left: 105px;
+            padding-left: 5px;
+            font-size: 10px;
+        }
+
+        .redspan {
+            color: #B22222;
+            font-weight: bold;
+        }
+
+        #inputtxt{
+            width: 85%;
+            height: 10px;
+            position: absolute;
+            top: 122px;
+            left: 105px;
+            padding-left: 5px;
+            font-size: 10px;
+
+        }
+
+        .mail tbody{
+            font-size: 10px;
+        }
+            /* outlook css ends here*/
+	    
+	    .summaryquestion{
+        margin-bottom: 20px;
+        float: left;
+        
+    }
+    .summaryoptions{
+        min-height: 75px;
+        height: auto;
+        margin-bottom: 10px;
+        width: 100%
+    }
+    .question-container{
+        margin-top: 10px;
+        float: left;
+        width: 100%;
+        background: #F0F0F0;
+    }
+    .questioninnerwrapper{
+        background: #fff;
+        margin-top: 40px;
+        height: auto;
+        overflow: auto;
+        padding-bottom: 40px;
+        border-radius: 5px;
+    }
+    #Questioninfo{
+        font-weight: bold;
+       
+    }
+    #summaryheading{
+        border-top: 1px solid #cdcdcd;
+        border-bottom: 1px solid #cdcdcd;
+        margin-left: -20px;
+        margin-right: 0;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+.intro-content-question:not(.summaryquestion){
+    margin: 0 10%;
+}
+
+    .submitdiv{
+        float: left;
+        width: 100%;
+        margin-top: 35px;
+        margin-bottom: 35px;
+       
+    }
+    #QuetionText{
+        margin-top: 20px;
+        padding-top: 20px;
+        padding-right: 10px;
+    }
+    .question-band{
+        float: left;
+        margin-left: 8%;
+    }
