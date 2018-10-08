@@ -127,8 +127,8 @@ function showQuestionPresenterMode(){
                 })[0];
                 $("#"+correctoption.OptionId).prop("checked","true");	
                 $("input[type='radio']").k_disable();
-                var iscorrectimg = $("#"+correctoption.OptionId).closest("label").find(".iscorrect").find("img")
-                $("#"+correctoption.OptionId).closest("label").css("position","relative");
+                var iscorrectimg = $("#"+correctoption.OptionId).closest("div").find(".iscorrect").find("img")
+                $("#"+correctoption.OptionId).closest("div").css("position","relative");
                 iscorrectimg.attr("src","assets/images/tick-icon-correct-1.png")
 				iscorrectimg.closest("span").show();
 				iscorrectimg.attr("aria-label","Correct option selected");
@@ -141,8 +141,8 @@ function showUserReviewMode(){
                 })[0];
                
                 
-                var iscorrectimg = $("#"+correctoption.OptionId).closest("label").find(".iscorrect").find("img")
-                $("#"+correctoption.OptionId).closest("label").css("position","relative");
+                var iscorrectimg = $("#"+correctoption.OptionId).closest("div").find(".iscorrect").find("img")
+                $("#"+correctoption.OptionId).closest("div").css("position","relative");
                 iscorrectimg.attr("src","assets/images/tick-icon-correct-1.png")
 				iscorrectimg.closest("span").show();
 				if(correctoption.OptionId == currQuestion.UserSelectedOptionId)
@@ -153,8 +153,8 @@ function showUserReviewMode(){
 				else
 				{
 					iscorrectimg.attr("aria-label","Correct option");
-					$("#"+ currQuestion.UserSelectedOptionId).closest("label").css("position","relative");
-					iscorrectimg = $("#"+ currQuestion.UserSelectedOptionId).closest("label").find(".iscorrect").find("img")
+					$("#"+ currQuestion.UserSelectedOptionId).closest("div").css("position","relative");
+					iscorrectimg = $("#"+ currQuestion.UserSelectedOptionId).closest("div").find(".iscorrect").find("img")
 					$("#"+ currQuestion.UserSelectedOptionId).prop("checked","true");
 					iscorrectimg.attr("src","assets/images/incorrect-v1-1.png")
 					iscorrectimg.attr("aria-label","Incorrect option selected");

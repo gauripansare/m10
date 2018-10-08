@@ -264,7 +264,7 @@ var _Navigator = (function () {
             if (_currentPageObject.isStartPage) {
                 $(".main-content").load(pageUrl, function () {
                     OnPageLoad();
-                    setReader("header1");
+                    $("#titleheader").focus();
 
                 });
             } else {
@@ -275,7 +275,7 @@ var _Navigator = (function () {
                         if (_currentPageId == "p17") {
                             showQuestion();
                         }
-                        setReader("titleheader");
+                        
                         $("#hintdiv").show();
                         if (_currentPageObject.hideHint != undefined && _currentPageObject.hideHint) {
                             $("#hintdiv").hide();
@@ -285,6 +285,14 @@ var _Navigator = (function () {
                         }
                         if (_currentPageObject.hinturl != undefined) {
                             $(".hintcontent").load("pagedata/hintdata/" + _currentPageObject.hinturl, function () { });
+                        }
+                        if(_currentPageId == "p2")
+                        {
+                            $("#titleheader").focus();
+                        }
+                        else
+                        {
+                            $("#progressdiv").focus();
                         }
 
                     });
