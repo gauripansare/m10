@@ -13,6 +13,21 @@ var _Settings = {
   topMargin: 144,
   minHeight: 437
 }
+
+var userAgentCustom = window.navigator.userAgent;
+var ua = navigator.userAgent.toLowerCase();
+var isAndroid = ua.indexOf("android") > -1;
+var isIE11version = !!navigator.userAgent.match(/Trident.*rv\:11\./);
+var isIOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+var CurClientWidth = window.innerWidth;
+var Macbrowser = navigator.userAgent.indexOf('Chrome');
+var Macos = navigator.userAgent.indexOf('Mac');
+var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+var isIpad = userAgentCustom.match(/iPad/i)
+var isIphone = (navigator.userAgent.match(/iPhone/i))
+var isIEEdge = /Edge/.test(navigator.userAgent)
+var Firefox = /Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent)
 var deleteIdList = ["row2", "row3", "row4", "row7", "row9", "row11", "row12"];
 var readIdList = ["row1", "row5", "row6", "row8", "row10"];
 var checkMail1, checkMail2, checkMail3, checkMail4, checkMail5, checkMail6, checkMail7, obj, k_box, gpName, gpScore, g_ReadRowId, g_delRowId;

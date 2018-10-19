@@ -57,6 +57,21 @@ $(document).on("dblclick", ".divHotSpotDbClick", function (event) {
     },400)
     
 });
+
+$(document).on("keydown", ".divHotSpotDbClick", function (event) {
+    if(_Navigator.IsPresenterMode()){
+        return;
+    }
+    if (window.event) {
+        key = window.event.keyCode;
+    } else if (event) {
+        key = event.keyCode;
+    }
+    if (key == 13) {
+        $(this).trigger("dblclick");
+    }
+});
+
 $(document).on("dblclick", ".trclick", function (event) {
     event.preventDefault();
     //if (hotspotclicked || _Navigator.IsAnswered())
@@ -70,6 +85,23 @@ $(document).on("dblclick", ".trclick", function (event) {
     },400)
     
 });
+window.addEventListener('keypress', function (e) {
+    if (e.keyCode !== 13) {
+        alert(e.key);
+    }
+}, false);
+$(document).on("keydown", ".trclick", function (event) {
+    debugger;
+    if (window.event) {
+        key = window.event.keyCode;
+    } else if (event) {
+        key = event.keyCode;
+    }
+    if (key == 13) {
+        $(".trclick").trigger("dblclick");
+    }
+});
+
 $(document).on("click", "#OutlookMail > tbody > tr", function (event) {
     $(this).addClass("selected").siblings().removeClass("selected");
     
