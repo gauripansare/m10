@@ -91,7 +91,6 @@ window.addEventListener('keypress', function (e) {
     }
 }, false);
 $(document).on("keydown", ".trclick", function (event) {
-    debugger;
     if (window.event) {
         key = window.event.keyCode;
     } else if (event) {
