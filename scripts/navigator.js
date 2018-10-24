@@ -213,6 +213,7 @@ var _Navigator = (function () {
             return progressLevels;
         },
         LoadPage: function (pageId, jsonObj) {
+            $(".hintcontainer").hide()
             if (jsonObj == undefined) {
                 jsonObj = {};
             }
