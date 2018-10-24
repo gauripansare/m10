@@ -38,9 +38,9 @@ $(document).on("click", ".divHotSpot", function (event) {
     setTimeout(function () {
         hotspotclicked = false;
         _ModuleCommon.HotspotClick(hotspot, event);
-       
-    },400)
-    
+
+    }, 400)
+
 });
 $(document).on("dblclick", ".divHotSpotDbClick", function (event) {
     event.preventDefault();
@@ -53,13 +53,13 @@ $(document).on("dblclick", ".divHotSpotDbClick", function (event) {
     setTimeout(function () {
         hotspotclicked = false;
         _ModuleCommon.HotspotClick(hotspot, event);
-       
-    },400)
-    
+
+    }, 400)
+
 });
 
 $(document).on("keydown", ".divHotSpotDbClick", function (event) {
-    if(_Navigator.IsPresenterMode()){
+    if (_Navigator.IsPresenterMode()) {
         return;
     }
     if (window.event) {
@@ -81,9 +81,9 @@ $(document).on("dblclick", ".trclick", function (event) {
     setTimeout(function () {
         hotspotclicked = false;
         _ModuleCommon.TrClick(hotspot, event);
-       
-    },400)
-    
+
+    }, 400)
+
 });
 window.addEventListener('keypress', function (e) {
     if (e.keyCode !== 13) {
@@ -103,7 +103,7 @@ $(document).on("keydown", ".trclick", function (event) {
 
 $(document).on("click", "#OutlookMail > tbody > tr", function (event) {
     $(this).addClass("selected").siblings().removeClass("selected");
-    
+
 });
 
 $(document).on("click", "#linkprevious", function (event) {
@@ -111,13 +111,15 @@ $(document).on("click", "#linkprevious", function (event) {
     _Navigator.Prev();
 });
 $(document).on("click", "#linknext", function (event) {
-    if ($(this).k_IsDisabled()) return;    
+    if ($(this).k_IsDisabled()) return;
     _Navigator.Next();
 });
 
 
 
 $(document).on("click", ".hintlink", function (event) {
+    if ($(this).parent().hasClass("disabled"))
+        return;
     if ($(this).hasClass("expanded")) {
         $(".hintlink").removeClass("expanded")
         $(".hintlink").attr("aria-expanded", "false")
@@ -163,25 +165,25 @@ $(document).on('click', ".reviewsubmit", function (event) {
     _Navigator.Next();
 });
 $(document).on('mouseover', ".hintlink", function (event) {
-    $(".hintlink .hintlinkspan").css({"color":"#b22222","border-bottom":"1px solid #b22222"})
-    $(this).find("path").css({"fill":"#b22222"})
+    $(".hintlink .hintlinkspan").css({ "color": "#b22222", "border-bottom": "1px solid #b22222" })
+    $(this).find("path").css({ "fill": "#b22222" })
 });
 
 $(document).on('mouseout', ".hintlink", function (event) {
- $(".hintlink .hintlinkspan").css({"color":"#047a9c","border-bottom":"1px solid #047a9c"})
- $(this).find("path").css({"fill":"#047a9c"}) 
+    $(".hintlink .hintlinkspan").css({ "color": "#047a9c", "border-bottom": "1px solid #047a9c" })
+    $(this).find("path").css({ "fill": "#047a9c" })
 });
 
 $(document).on("click", ".quizButton", function (event) {
-    _Navigator.LoadPage("p46") 
+    _Navigator.LoadPage("p46")
 });
 
 $(document).on("change", ".assessmentradio", function (event) {
-    $(".assessmentSubmit").k_enable();  
-  
+    $(".assessmentSubmit").k_enable();
+
 });
 $(document).on("click", ".assessmentSubmit", function (event) {
-    gRecordData.Questions[currentQuestionIndex].UserSelectedOptionId = $("input[type='radio']:checked").attr("id") ;
+    gRecordData.Questions[currentQuestionIndex].UserSelectedOptionId = $("input[type='radio']:checked").attr("id");
     gRecordData.Questions[currentQuestionIndex].IsAnswered = true;
     _Navigator.Next();
 });
@@ -190,5 +192,5 @@ $(document).on('click', "#continuebtn", function (event) {
 });
 
 $(document).on('click', ".inputcircle", function (event) {
-    $(this).next(".inpputtext").trigger( "click" );
-    });
+    $(this).next(".inpputtext").trigger("click");
+});
