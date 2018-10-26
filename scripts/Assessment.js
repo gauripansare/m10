@@ -135,6 +135,7 @@ function showQuestionPresenterMode(){
 				$("#linknext").k_enable();
 }
 function showUserReviewMode(){
+	$(".assessmentSubmit").hide();
 	var currQuestion = gRecordData.Questions[currentQuestionIndex];
                 var correctoption =  currQuestion.Options.filter(function (item) {
                     return item.IsCorrect;

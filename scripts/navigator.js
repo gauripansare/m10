@@ -229,7 +229,7 @@ var _Navigator = (function () {
                 _currentPageObject.isAnswered = true;
             }
             this.UpdateProgressBar();
-            if (_currentPageId == "p3" && (_currentPageObject.isAnswered == undefined || !_currentPageObject.isAnswered)) {
+            if (_currentPageId == "p3" && (_currentPageObject.isVisited == undefined || !_currentPageObject.isVisited)) {
                 _NData["p2"].nextPageId = "p3";
                 _NData["p4prev"].prevPageId = "p3";
                 progressLevels[0] = (progressLevels[0] + 1);
