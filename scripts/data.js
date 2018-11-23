@@ -34,6 +34,10 @@ var checkMail1, checkMail2, checkMail3, checkMail4, checkMail5, checkMail6, chec
 var allRead = false;
 var allRead1 = false;
 var tempRowID = "";
+var animeTime = 1000;
+if(isIphone != null){
+    animeTime = 3000;
+}
 
 var _PData = {
   //windows1

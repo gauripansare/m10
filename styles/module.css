@@ -93,7 +93,15 @@
         color: #F9FF00;
     }
 /*Question Css*/
+.greenspan {
+    color: #01662C;
+    font-weight: bold;
+}
 
+.redspan {
+    color: #B22222;
+    font-weight: bold;
+}
 .wrapperimage {
     width: 798px;
     height: auto;
@@ -205,13 +213,21 @@
 }
 
 /*assessment css */
-.inputcircle{
+inputcircle{
     position: relative;
         padding-left: 6px;
         cursor: pointer;
         color: gray;
-        left: -25px;
+        left: -22px;
     }
+.questioninnerwrapper .inputcircle , #Summary .inputcircle {
+    position: relative;
+    padding-left: 6px;
+    cursor: pointer;
+    color: gray;
+    left: -22px;
+}
+
     
     .inputcircle:after {
         content: '';
@@ -231,7 +247,7 @@
         -webkit-box-sizing: border-box;
     }
     
-    .assessmentradio:checked + .inputcircle:before {
+    .assessmentradio:checked + .inpputtext .inputcircle:before {
         content: '';   
         height: 15px;
         width: 15px;
@@ -245,7 +261,7 @@
         -webkit-border-radius: 100%;
     }
     
-    .assessmentradio:checked + .inputcircle {
+    .assessmentradio:checked + .inpputtext .inputcircle, #Summary .assessmentradio:checked + .inpputtext .inputcircle {
         color: #047a9c;
     }
     
@@ -439,4 +455,65 @@
     .question-band{
         float: left;
         margin-left: 8%;
+    position: relative;
     }
+.quetiontext{
+       margin-left: 20px;
+   }
+   .inpputtext{
+    display: block;
+    margin: 5px 0;
+}
+    #Summary .inpputtext{
+    margin: 0px;
+    }
+}
+#nextSpan{
+    position: relative;
+    left: 16px;
+    top: -6px;
+}
+#prevSpan{
+    position: relative;
+    left: -6px;
+    top: -6px;
+}
+.presentationModeFooter {
+    display: inline-block;
+    background-color: #1a76cb;
+    height: 29px;
+    width: 100%;
+    color: white;
+    text-align: center;
+}
+.option_div img{
+    width: 100px;
+    height: 67px;
+}
+.accessibility{
+    font-size: 0px;
+    opacity: 0;
+}
+.questioninnerwrapper legend{
+    width: 100%;
+}
+.summaryquestion legend{
+    width: 100%;
+}
+
+input[type="checkbox"].disabled{
+    opacity: 0;
+}
+.chklbl {
+    width: 100%;
+    display: block;
+}
+.chkbox{
+    float: left;
+    margin-top: 7px;
+}
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .iscorrect{
+        margin-top: 5px;
+    }
+}
