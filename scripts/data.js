@@ -14,6 +14,9 @@ var _Settings = {
   minHeight: 437
 }
 
+
+var tr_count = 0;
+
 var userAgentCustom = window.navigator.userAgent;
 var ua = navigator.userAgent.toLowerCase();
 var isAndroid = ua.indexOf("android") > -1;

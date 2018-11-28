@@ -352,7 +352,7 @@ var _ModuleCommon = (function () {
                     $("#div_feedback").css("display", "inline-block");
 
                     var fdbkUrl2 = _Settings.dataRoot + "feedbackdata/feedbackc3p4.htm";
-                    if (url != "feedbackc3p4.htm") {
+                    if (fdbkUrl2 != "feedbackc3p4.htm") {
                         $("#main_feedback").load(fdbkUrl2, function () {
                             // this.SetFeedbackTop()
                             //$('html,body').animate({ scrollTop: document.body.scrollHeight }, 1000, function () { });
@@ -420,7 +420,13 @@ var _ModuleCommon = (function () {
 
                         htmlForDivHotspotImage += "<button type='button' hsId='" + hsId + "'  id='divHotspots" + i + "_" + hsId + "' class='" + hotspotdata.Hotspots[i].HotspotClass + "' style=' width:" + pwdth + ";height:" + phight + ";left:" + pleft + ";top:" + ptop + ";display:" + display + ";' action='" + hotspotdata.Hotspots[i].action + "' role='button' aria-label='" + accessText + "' rowId='" + rowId + "'/>";
                     }
-                    $(".wrapperimage").append(htmlForDivHotspotImage)
+                    if(currentPageData.pageId == "p4"){
+                        $(".wrapperimage").prepend(htmlForDivHotspotImage)
+                    }
+                    else{
+                        $(".wrapperimage").append(htmlForDivHotspotImage)
+                    }
+                    
                 }
 
             }
@@ -828,6 +834,12 @@ var _ModuleCommon = (function () {
             if (url != undefined) {
                 $("#div_feedback .div_fdkcontent").load(fdbkUrl, function () {
                     // this.SetFeedbackTop()
+                    if (isIOS) {
+                        $("#div_feedback p:first").attr("role", "text")
+                    }
+                    $("#div_feedback p:first").attr("tabindex", "-1")
+                    window.scrollTo(0, document.body.scrollHeight)
+                    $("#div_feedback p:first").focus();
                     if (allComplete) {
                         _Navigator.SetPageStatus(true);
                         _currentPageObject.nextPageId = "p17";
@@ -837,12 +849,7 @@ var _ModuleCommon = (function () {
                             $("#main_feedback").load(fdbkUrl2, function () {
                                 $(".div_fdkcontent>p")[2].remove();
                                 //$('html,body').animate({ scrollTop: document.body.scrollHeight }, 1000, function () { });
-                                if (isIOS) {
-                                    $("#div_feedback p:first").attr("role", "text")
-                                }
-                                $("#div_feedback p:first").attr("tabindex", "-1")
-                                window.scrollTo(0, document.body.scrollHeight)
-                                $("#div_feedback p:first").focus();
+                                
                             });
                         }
 
@@ -1171,8 +1178,36 @@ $(document).on("click", '.fbkmail8', function (event) {
 
 
 // delete hotspot click for particular feedback popup
-$(document).on("click", "#divHotspots0_row1", function (event) {
 
+$(document).on("keydown", "#divHotspots0_row1", function (event) {
+    if (_Navigator.IsPresenterMode()) {
+        return;
+    }
+    if (window.event) {
+        key = window.event.keyCode;
+    } else if (event) {
+        key = event.keyCode;
+    }
+    if (key == 13) {
+        $(this).trigger("click");
+    }
+});
+$(document).on("keydown", ".fbkmail1, .fbkmail2, .fbkmail3, .fbkmail4, .fbkmail5, .fbkmail6, .fbkmail7, .fbkmail8, .fbkmail10, .fbkmail11", function (event) {
+    if (_Navigator.IsPresenterMode()) {
+        return;
+    }
+    if (window.event) {
+        key = window.event.keyCode;
+    } else if (event) {
+        key = event.keyCode;
+    }
+    if (key == 13) {
+        tr_count = 0;
+        $(this).trigger("click");
+    }
+});
+$(document).on("click", "#divHotspots0_row1", function (event) {
+    tr_count = 0;
     var selectedRowID = $('#OutlookMail > tbody > tr.selected').attr("id");
     if (selectedRowID == undefined) { } else {
         switch (selectedRowID) {
@@ -1180,7 +1215,9 @@ $(document).on("click", "#divHotspots0_row1", function (event) {
                 if (checkMail1 == undefined || checkMail1 == true) {
                     //ITSimModule.ShowCustomPopup()
                     checkMail1 = true;
-                    $('.fbkmail1').attr("role", "link");
+                    $('.fbkmail1').attr({"role": "link" ,tabindex:0,"aria-label":"blank subject"});
+                    $('.fbkmail1').closest("tr").removeAttr("tabindex");
+                    $('.fbkmail1').closest("tr").addClass("trdelete")
                 }
                 break;
             case "row3":
@@ -1188,6 +1225,9 @@ $(document).on("click", "#divHotspots0_row1", function (event) {
                     //ITSimModule.ShowCustomPopup()
                     checkMail2 = true;
                     $('.fbkmail2').attr("role", "link");
+                    $('.fbkmail2').attr({"role": "link" ,tabindex:0,"aria-label":"blank subject"});
+                    $('.fbkmail2').closest("tr").removeAttr("tabindex");
+                    $('.fbkmail2').closest("tr").addClass("trdelete")
                 }
                 break;
             case "row4":
@@ -1195,6 +1235,9 @@ $(document).on("click", "#divHotspots0_row1", function (event) {
                     //ITSimModule.ShowCustomPopup()
                     checkMail3 = true;
                     $('.fbkmail3').attr("role", "link");
+                    $('.fbkmail3').attr({"role": "link" ,tabindex:0,"aria-label":"blank subject"});
+                    $('.fbkmail3').closest("tr").removeAttr("tabindex");
+                    $('.fbkmail3').closest("tr").addClass("trdelete")
                 }
                 break;
             case "row7":
@@ -1203,6 +1246,12 @@ $(document).on("click", "#divHotspots0_row1", function (event) {
                     checkMail4 = true;
                     $('.fbkmail4').attr("role", "link");
                     $('.fbkmail5').attr("role", "link");
+                    $('.fbkmail4').attr({"role": "link" ,tabindex:0,"aria-label":"blank subject"});
+                    $('.fbkmail4').closest("tr").removeAttr("tabindex");
+                    $('.fbkmail4').closest("tr").addClass("trdelete")
+                    $('.fbkmail5').attr({"role": "link" ,tabindex:0,"aria-label":"blank subject"});
+                    $('.fbkmail5').closest("tr").removeAttr("tabindex");
+                    $('.fbkmail5').closest("tr").addClass("trdelete")
                 }
                 break;
             case "row9":
@@ -1211,6 +1260,12 @@ $(document).on("click", "#divHotspots0_row1", function (event) {
                     checkMail5 = true;
                     $('.fbkmail6').attr("role", "link");
                     $('.fbkmail10').attr("role", "link");
+                    $('.fbkmail6').attr({"role": "link" ,tabindex:0,"aria-label":"blank subject"});
+                    $('.fbkmail6').closest("tr").removeAttr("tabindex");
+                    $('.fbkmail6').closest("tr").addClass("trdelete");
+                    $('.fbkmail10').attr({"role": "link" ,tabindex:0,"aria-label":"blank subject"});
+                    $('.fbkmail10').closest("tr").removeAttr("tabindex");
+                    $('.fbkmail10').closest("tr").addClass("trdelete")
                 }
                 break;
             case "row11":
@@ -1218,6 +1273,9 @@ $(document).on("click", "#divHotspots0_row1", function (event) {
                     //ITSimModule.ShowCustomPopup()
                     checkMail6 = true;
                     $('.fbkmail7').attr("role", "link");
+                    $('.fbkmail7').attr({"role": "link" ,tabindex:0,"aria-label":"blank subject"});
+                    $('.fbkmail7').closest("tr").removeAttr("tabindex");
+                    $('.fbkmail7').closest("tr").addClass("trdelete")
                 }
                 break;
             case "row12":
@@ -1225,6 +1283,9 @@ $(document).on("click", "#divHotspots0_row1", function (event) {
                     //ITSimModule.ShowCustomPopup()
                     checkMail7 = true;
                     $('.fbkmail8').attr("role", "link");
+                    $('.fbkmail8').attr({"role": "link" ,tabindex:0,"aria-label":"blank subject"});
+                    $('.fbkmail8').closest("tr").removeAttr("tabindex");
+                    $('.fbkmail8').closest("tr").addClass("trdelete")
                 }
                 break;
             default:

@@ -13,7 +13,7 @@ var _Navigator = (function () {
         "p1": {
             pageId: "p1",
             prevPageId: "",
-            nextPageId: "p2",
+            nextPageId: "p4",
             dataurl: "p1.htm",
             isStartPage: true,
             isAnswered: true,

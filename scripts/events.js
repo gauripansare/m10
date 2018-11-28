@@ -28,6 +28,8 @@ $(document).on("click", ".divHotSpot", function (event) {
 
     }, 400)
 
+    
+
 });
 $(document).on("dblclick", ".divHotSpotDbClick", function (event) {
     if (_Navigator.IsPresenterMode()) {
@@ -86,13 +88,32 @@ $(document).on("keydown", ".trclick", function (event) {
         key = event.keyCode;
     }
     if (key == 13) {
-        hotspotclicked = true;
-        hotspot = $(this);
-        setTimeout(function () {
-            hotspotclicked = false;
-            _ModuleCommon.TrClick(hotspot, event);
+        if ($(".selected").length >= 1 && !$(this).hasClass("selected")) {
+            tr_count = 0;
+            $(".selected").removeClass("selected");
+           // $(".trdelete").removeClass("trdelete");
+        }
+        debugger;
+        tr_count = tr_count + 1;
+        if (!$(this).hasClass("selected")) {
+            $(this).addClass("selected");
+        }
+        if($(".selected").length == 0)
+        {
+            tr_count = 0;
+        }
+        //if($(this).hasClass("selected") && $(this).hasClass("trdelete"))
+          //  return;
+        if (tr_count == 2 && $(".selected").length == 1) {
+            hotspotclicked = true;
+            hotspot = $(this);
+            setTimeout(function () {
+                hotspotclicked = false;
+                _ModuleCommon.TrClick(hotspot, event);
 
-        }, 400)
+            }, 400)
+        }
+
     }
 });
 
