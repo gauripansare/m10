@@ -1206,7 +1206,8 @@ $(document).on("keydown", ".fbkmail1, .fbkmail2, .fbkmail3, .fbkmail4, .fbkmail5
         $(this).trigger("click");
     }
 });
-$(document).on("click", "#divHotspots0_row1", function (event) {
+$(document).on("click touchstart", "#divHotspots0_row1", function (event) {
+    debugger;
     tr_count = 0;
     var selectedRowID = $('#OutlookMail > tbody > tr.selected').attr("id");
     if (selectedRowID == undefined) { } else {

@@ -512,6 +512,10 @@ input[type="checkbox"].disabled{
     float: left;
     margin-top: 7px;
 }
+
+#Summary .inpputtext {
+    margin: 0px;
+}
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
     .iscorrect{
         margin-top: 5px;

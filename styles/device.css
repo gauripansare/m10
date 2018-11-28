@@ -152,6 +152,10 @@
     .question-band{
         margin-left: 21%;
     }
+    .activity{
+        height: 400px;
+        overflow-y: scroll;
+        }
 }
 /* Smartphones (portrait and landscape) ----------- */
 @media screen and (max-width : 770px) {

@@ -64,7 +64,7 @@ $(document).on("keydown", ".divHotSpotDbClick", function (event) {
     }
 });
 
-$(document).on("dblclick", ".trclick", function (event) {
+$(document).on("dblclick touchstart", ".trclick", function (event) {
     event.preventDefault();
     //if (hotspotclicked || _Navigator.IsAnswered())
     //    return;
@@ -131,7 +131,7 @@ $(document).on("click", "#linknext", function (event) {
     _Navigator.Next();
 });
 $(document).on("click", ".hintdoc", function (event) {
-    debugger;
+    if ($(this).k_IsDisabled()) return;
     if ($(this).hasClass("hintdoc")) {
         if ($(this).hasClass("expanded")) {
             $(this).removeClass("expanded")
@@ -217,7 +217,7 @@ $(window).resize(function () {
 });
 
 $(document).on('click', ".activityimg", function (event) {
-    if ($(".divHotSpot").hasClass("disabled"))
+    if ($(".divHotSpot").hasClass("disabled") || $(".divHotSpot").length == 0)
         return;
     _ModuleCommon.AddEditPropertiesClick(event);
 });
@@ -232,9 +232,24 @@ $(document).on('click', ".reviewsubmit", function (event) {
     if ($(this).k_IsDisabled()) return;
     _Navigator.Next();
 });
-$(document).on('mouseover', ".hintlink", function (event) {
-    $(".hintlink .hintlinkspan").css({ "color": "#b22222", "border-bottom": "1px solid #b22222" })
-    $(this).find("path").css({ "fill": "#b22222" })
+$(document).on('touchstart', ".hintlink", function (event) {
+    mouseenter($(this));
+    touchend = false;
+});
+var touchend = false;
+$(document).on('touchend ', ".hintlink", function (event) {
+    mouseleave($(this));
+    touchend = true;
+});
+
+$(document).on('touchstart', ".hintdoc", function (event) {
+    mouseenter($(this));
+    touchend1 = false;
+});
+
+$(document).on('touchend ', ".hintdoc", function (event) {
+    mouseleave($(this));
+    touchend1 = true;
 });
 
 
@@ -291,11 +306,11 @@ $(document).on('click', ".inputcircle", function (event) {
 });
 
 window.onload = function () {
-    //_ScormUtility.Init();
+    _ScormUtility.Init();
 }
 
 window.onunload = function () {
-    //_ScormUtility.End();
+    _ScormUtility.End();
 }
 
 window.addEventListener("scroll", function () {

@@ -8,12 +8,13 @@ var _Navigator = (function () {
     var totalsimscore = 18;
     //var presentermode = false;
     var bookmarkpageid = "";
+    var retrycnt = 1;
     var quizpageid = "p17";
     var _NData = {
         "p1": {
             pageId: "p1",
             prevPageId: "",
-            nextPageId: "p4",
+            nextPageId: "p2",
             dataurl: "p1.htm",
             isStartPage: true,
             isAnswered: true,
@@ -224,6 +225,12 @@ var _Navigator = (function () {
             return progressLevels;
         },
         LoadPage: function (pageId, jsonObj) {
+            $(".hintcontainer").hide();
+             $(".header-content-dock").css({"visibility":"hidden"});
+            if (_Navigator.IsRevel() && _currentPageId != undefined && _currentPageId != "") {
+                LifeCycleEvents.OnUnloadFromPlayer()
+            }
+            bookmarkpageid = pageId;
             if (jsonObj == undefined) {
                 jsonObj = {};
             }
@@ -303,14 +310,14 @@ var _Navigator = (function () {
                                     $("#titleheader").focus();
                                 }
                                 else if ((isIphone || isAndroid) && _NData[_currentPageId].isLoaded != undefined && _NData[_currentPageId].isLoaded == true) {//iphone android on previous focus is set to header
-                                    $("h2.pageheading").attr("tabindex","0");
+                                    $("h2").attr("tabindex", "0");
                                     $("h2").focus();
                                 }
                                 else {
                                     //$(".header-informarion .hintlink").focus();
                                     //$("h2").focus();
                                     if (isChrome && !isAndroid) {
-                                        $("h2.pageheading").attr("tabindex","0");
+                                        $("h2").attr("tabindex", "0");
                                         $("h2").focus();
                                     }
                                     else {
@@ -335,14 +342,21 @@ var _Navigator = (function () {
                         if (_currentPageId == quizpageid)//  change to assessment id
                         {
                             _Assessment.ShowQuestion();
+                            $("h2.pageheading").attr("tabindex", "0");
+                            $("h2").focus();
                         }
 
                         $("#hintdiv").show();
                         if (_currentPageObject.hideHint != undefined && _currentPageObject.hideHint) {
                             $("#hintdiv").hide();
                         }
-
-                        if (_currentPageObject.hinturl != undefined) {
+                        if(_currentPageObject.hinturl == undefined)
+                        {
+                            $(".hintlink").k_disable();
+                        }
+                        else
+                        {
+                            $(".hintlink").k_enable();
                             $(".hintcontent").load("pagedata/hintdata/" + _currentPageObject.hinturl, function () { });
                         }
                         if(_currentPageId == "p2")
@@ -354,6 +368,7 @@ var _Navigator = (function () {
                             $("#progressdiv").focus();
                         }
 
+                        _Navigator.GetBookmarkData();
                     });
                 })
             }
@@ -381,7 +396,7 @@ var _Navigator = (function () {
             if (_Navigator.IsRevel()) {
                 LifeCycleEvents.OnInteraction("Previous link click.")
             }
-            if (_currentPageObject.pageId == "p17" && typeof (currentQuestionIndex) != 'undefined' && currentQuestionIndex > 0) {
+            if (_currentPageObject.pageId == quizpageid && typeof (currentQuestionIndex) != 'undefined' && currentQuestionIndex > 0) {
                 $("#ReviewIns").hide();
                 $(".intro-content-question").show();
                 $("#Questioninfo").show();
@@ -404,7 +419,7 @@ var _Navigator = (function () {
             if (_currentPageObject.customNext != undefined && !_currentPageObject.customNext.isComplete) {
                 this.LoadPage(_currentPageObject.customNext);
             }
-            if (_currentPageObject.pageId == "p17") {
+            if (_currentPageObject.pageId == quizpageid) {
 
                 if (typeof (currentQuestionIndex) != 'undefined' && typeof (gRecordData.Questions) != 'undefined' && (currentQuestionIndex + 1) < gRecordData.Questions.length) {
                     currentQuestionIndex = currentQuestionIndex + 1
@@ -525,7 +540,7 @@ var _Navigator = (function () {
             return submitCounter;
         },
         SetPresenterMode: function (val) {
-            presentermode = val;
+            packageType = val;
         },
         IsPresenterMode: function () {
             if (packageType == "presenter") {
@@ -540,6 +555,7 @@ var _Navigator = (function () {
                 return;
             var bookmarkobj = {}
             bookmarkobj.BMPageId = bookmarkpageid;
+            bookmarkobj.BMretrycnt = retrycnt;
             bookmarkobj.VisistedPages = this.GetNavigatorBMData();
             bookmarkobj.ProgressLevels = progressLevels;
             bookmarkobj.ReviewData = _ModuleCommon.GetReviewData();
@@ -595,14 +611,21 @@ var _Navigator = (function () {
             if (bookmarkdata != undefined && bookmarkdata != "") {
                 bookmarkdata = JSON.parse(bookmarkdata);
                 bookmarkpageid = bookmarkdata.BMPageId;
+                retrycnt = bookmarkdata.BMretrycnt;
                 this.SetNavigatorBMData(bookmarkdata.VisistedPages)
-                //progressLevels = bookmarkdata.ProgressLevels;
+                progressLevels = bookmarkdata.ProgressLevels;
                 _ModuleCommon.SetReviewData(bookmarkdata.ReviewData)
                 _Assessment.Setbookmarkdata(bookmarkdata.AssessmentData)
             }
         },
         GetBookMarkPage: function () {
             return bookmarkpageid;
+        },
+        GetBookMarkRetrycnt: function(){
+            return retrycnt;
+        },
+        SetBookMarkRetrycnt: function(){
+            retrycnt = retrycnt + 1;
         },
         Initialize: function () {
 
