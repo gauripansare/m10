@@ -77,7 +77,6 @@ $(document).on("dblclick", ".trclick", function (event) {
 });
 window.addEventListener('keypress', function (e) {
     if (e.keyCode !== 13) {
-        alert(e.key);
     }
 }, false);
 $(document).on("keydown", ".trclick", function (event) {
