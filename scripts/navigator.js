@@ -556,6 +556,7 @@ var _Navigator = (function () {
             var bookmarkobj = {}
             bookmarkobj.BMPageId = bookmarkpageid;
             bookmarkobj.BMretrycnt = retrycnt;
+            bookmarkobj.BMg_RuntimeData = _ModuleCommon.Getg_RuntimeData();
             bookmarkobj.VisistedPages = this.GetNavigatorBMData();
             bookmarkobj.ProgressLevels = progressLevels;
             bookmarkobj.ReviewData = _ModuleCommon.GetReviewData();
@@ -612,6 +613,7 @@ var _Navigator = (function () {
                 bookmarkdata = JSON.parse(bookmarkdata);
                 bookmarkpageid = bookmarkdata.BMPageId;
                 retrycnt = bookmarkdata.BMretrycnt;
+                _ModuleCommon.Setg_RuntimeData(bookmarkdata.BMg_RuntimeData);
                 this.SetNavigatorBMData(bookmarkdata.VisistedPages)
                 progressLevels = bookmarkdata.ProgressLevels;
                 _ModuleCommon.SetReviewData(bookmarkdata.ReviewData)

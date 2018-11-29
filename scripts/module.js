@@ -684,6 +684,9 @@ var _ModuleCommon = (function () {
         Getg_RuntimeData: function () {
             return g_RuntimeData;
         },
+        Setg_RuntimeData: function(BMg_RuntimeData){
+            g_RuntimeData = BMg_RuntimeData;
+        },
         ShowHidePageLoadFunctionality: function (isPageVisted, isCorrectClicked) {
 
             var gCurrPageObj = _Navigator.GetCurrentPage();
@@ -1371,6 +1374,6 @@ $.knowdlCountDown = function (options) {
 }
 
 $(document).ready(function () {
-    _Navigator.Start();
+    _Navigator.Initialize();
     $('body').attr({ "id": "thebody", "onmousedown": "document.getElementById('thebody').classList.add('no-focus');", "onkeydown": "document.getElementById('thebody').classList.remove('no-focus');" })
 });
