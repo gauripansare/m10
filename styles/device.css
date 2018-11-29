@@ -115,6 +115,10 @@
     .header-content-dock .hintlinkspan{
         vertical-align: super;
     }
+    .activity{
+        height: 350px;
+        overflow-y: scroll;
+        }
 }
 
 @media screen and (max-width : 480px) {
@@ -153,7 +157,7 @@
         margin-left: 21%;
     }
     .activity{
-        height: 400px;
+        height: 350px;
         overflow-y: scroll;
         }
 }

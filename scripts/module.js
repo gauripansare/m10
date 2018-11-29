@@ -156,11 +156,11 @@ var _ModuleCommon = (function () {
             $("#div_feedback").hide();
             //$('html,body').animate({ scrollTop: document.body.scrollHeigh }, 500, function () { });
             if (isIOS) {
-                $(".pageheading").attr("role", "text")
+                //$(".pageheading").attr("role", "text")
             }
-            $(".pageheading").attr("tabindex", "-1")
+            $("h2").attr("tabindex", "-1")
             window.scrollTo(0, document.body.scrollHeight)
-            $(".pageheading").focus();
+            $("h2").focus();
         },
         AddHotspotClick: function (hotspotObj, event, isCorrect) {
 
@@ -376,17 +376,16 @@ var _ModuleCommon = (function () {
             if (_currentPageObject.pageId == "p4prev") {
                 this.ShowHidePageLoadFunctionality();
             }
-            if (_currentPageObject.pageId == "p4prev2") {
-                var Nadata = _Navigator.Get();
-                Nadata["p4prev"].isAnswered = true;
-            }
-
 
             if (_Navigator.IsAnswered() && _currentPageObject.pageId != "p4") {
                 this.DisplayInstructorReviewMode();
                 $(".divHotSpot").addClass("disabled").attr("disabled", "true");
                 $(".divHotSpotDbClick").addClass("disabled").attr("disabled", "true");
                 $("#linknext").k_enable();
+            }
+            if (_currentPageObject.pageId == "p4prev2") {
+                var Nadata = _Navigator.Get();
+                Nadata["p4prev"].isAnswered = true;
             }
         },
         LoadHotSpot: function () {
@@ -417,16 +416,21 @@ var _ModuleCommon = (function () {
                             pleft = getPerc(Number(hotspotdata.Hotspots[i].left.replace("px", "").replace("%", "")), orw) + "%";
                             ptop = getPerc(Number(hotspotdata.Hotspots[i].top.replace("px", "").replace("%", "")), orh) + "%";
                         }
-
-                        htmlForDivHotspotImage += "<button type='button' hsId='" + hsId + "'  id='divHotspots" + i + "_" + hsId + "' class='" + hotspotdata.Hotspots[i].HotspotClass + "' style=' width:" + pwdth + ";height:" + phight + ";left:" + pleft + ";top:" + ptop + ";display:" + display + ";' action='" + hotspotdata.Hotspots[i].action + "' role='button' aria-label='" + accessText + "' rowId='" + rowId + "'/>";
+                        var eventname = hotspotdata.Hotspots[i].eventName;
+                        if (eventname != undefined && !isAndroid && !isIOS) {
+                            htmlForDivHotspotImage += "<button type='button' hsId='" + hsId + "'  id='divHotspots" + i + "_" + hsId + "' class='" + hotspotdata.Hotspots[i].HotspotClass + "' style=' width:" + pwdth + ";height:" + phight + ";left:" + pleft + ";top:" + ptop + ";display:" + display + ";' action='" + hotspotdata.Hotspots[i].action + "' role='button' aria-label='" + accessText + "' rowId='" + rowId + "'/>";
+                        }
+                        else {
+                            htmlForDivHotspotImage += "<button type='button' hsId='" + hsId + "'  class='divHotSpot'  id='divHotspots" + i + "_" + hsId + "' style=' width:" + pwdth + ";height:" + phight + ";left:" + pleft + ";top:" + ptop + ";display:" + display + ";' action='" + hotspotdata.Hotspots[i].action + "' role='button' aria-label='" + accessText + "' rowId='" + rowId + "'/>";
+                        }
                     }
-                    if(currentPageData.pageId == "p4"){
+                    if (currentPageData.pageId == "p4") {
                         $(".wrapperimage").prepend(htmlForDivHotspotImage)
                     }
-                    else{
+                    else {
                         $(".wrapperimage").append(htmlForDivHotspotImage)
                     }
-                    
+
                 }
 
             }
@@ -648,7 +652,7 @@ var _ModuleCommon = (function () {
             $("#div_feedback").css("display", "inline-block");
             if (url != undefined) {
                 $("#div_feedback .div_fdkcontent").load(fdbkUrl, function () {
-                   // $('html,body').animate({ scrollTop: document.body.scrollHeight }, 1000, function () { });
+                    // $('html,body').animate({ scrollTop: document.body.scrollHeight }, 1000, function () { });
                     if (isIOS) {
                         $("#div_feedback p:first").attr("role", "text")
                     }
@@ -684,7 +688,7 @@ var _ModuleCommon = (function () {
         Getg_RuntimeData: function () {
             return g_RuntimeData;
         },
-        Setg_RuntimeData: function(BMg_RuntimeData){
+        Setg_RuntimeData: function (BMg_RuntimeData) {
             g_RuntimeData = BMg_RuntimeData;
         },
         ShowHidePageLoadFunctionality: function (isPageVisted, isCorrectClicked) {
@@ -805,6 +809,8 @@ var _ModuleCommon = (function () {
             }
         },
         LoadFeedback: function (url) {
+            debugger;
+            tr_count = 0;//ATUL: 
             var _currentPageObject = _Navigator.GetCurrentPage();
             var fdbkUrl = _Settings.dataRoot + "feedbackdata/" + url;
             $("#div_feedback").show();
@@ -852,7 +858,7 @@ var _ModuleCommon = (function () {
                             $("#main_feedback").load(fdbkUrl2, function () {
                                 $(".div_fdkcontent>p")[2].remove();
                                 //$('html,body').animate({ scrollTop: document.body.scrollHeight }, 1000, function () { });
-                                
+
                             });
                         }
 
@@ -1219,7 +1225,7 @@ $(document).on("click touchstart", "#divHotspots0_row1", function (event) {
                 if (checkMail1 == undefined || checkMail1 == true) {
                     //ITSimModule.ShowCustomPopup()
                     checkMail1 = true;
-                    $('.fbkmail1').attr({"role": "link" ,tabindex:0,"aria-label":"blank subject"});
+                    $('.fbkmail1').attr({ "role": "link", tabindex: 0, "aria-label": "blank subject" });
                     $('.fbkmail1').closest("tr").removeAttr("tabindex");
                     $('.fbkmail1').closest("tr").addClass("trdelete")
                 }
@@ -1229,7 +1235,7 @@ $(document).on("click touchstart", "#divHotspots0_row1", function (event) {
                     //ITSimModule.ShowCustomPopup()
                     checkMail2 = true;
                     $('.fbkmail2').attr("role", "link");
-                    $('.fbkmail2').attr({"role": "link" ,tabindex:0,"aria-label":"blank subject"});
+                    $('.fbkmail2').attr({ "role": "link", tabindex: 0, "aria-label": "blank subject" });
                     $('.fbkmail2').closest("tr").removeAttr("tabindex");
                     $('.fbkmail2').closest("tr").addClass("trdelete")
                 }
@@ -1239,7 +1245,7 @@ $(document).on("click touchstart", "#divHotspots0_row1", function (event) {
                     //ITSimModule.ShowCustomPopup()
                     checkMail3 = true;
                     $('.fbkmail3').attr("role", "link");
-                    $('.fbkmail3').attr({"role": "link" ,tabindex:0,"aria-label":"blank subject"});
+                    $('.fbkmail3').attr({ "role": "link", tabindex: 0, "aria-label": "blank subject" });
                     $('.fbkmail3').closest("tr").removeAttr("tabindex");
                     $('.fbkmail3').closest("tr").addClass("trdelete")
                 }
@@ -1250,10 +1256,10 @@ $(document).on("click touchstart", "#divHotspots0_row1", function (event) {
                     checkMail4 = true;
                     $('.fbkmail4').attr("role", "link");
                     $('.fbkmail5').attr("role", "link");
-                    $('.fbkmail4').attr({"role": "link" ,tabindex:0,"aria-label":"blank subject"});
+                    $('.fbkmail4').attr({ "role": "link", tabindex: 0, "aria-label": "blank subject" });
                     $('.fbkmail4').closest("tr").removeAttr("tabindex");
                     $('.fbkmail4').closest("tr").addClass("trdelete")
-                    $('.fbkmail5').attr({"role": "link" ,tabindex:0,"aria-label":"blank subject"});
+                    $('.fbkmail5').attr({ "role": "link", tabindex: 0, "aria-label": "blank subject" });
                     $('.fbkmail5').closest("tr").removeAttr("tabindex");
                     $('.fbkmail5').closest("tr").addClass("trdelete")
                 }
@@ -1264,10 +1270,10 @@ $(document).on("click touchstart", "#divHotspots0_row1", function (event) {
                     checkMail5 = true;
                     $('.fbkmail6').attr("role", "link");
                     $('.fbkmail10').attr("role", "link");
-                    $('.fbkmail6').attr({"role": "link" ,tabindex:0,"aria-label":"blank subject"});
+                    $('.fbkmail6').attr({ "role": "link", tabindex: 0, "aria-label": "blank subject" });
                     $('.fbkmail6').closest("tr").removeAttr("tabindex");
                     $('.fbkmail6').closest("tr").addClass("trdelete");
-                    $('.fbkmail10').attr({"role": "link" ,tabindex:0,"aria-label":"blank subject"});
+                    $('.fbkmail10').attr({ "role": "link", tabindex: 0, "aria-label": "blank subject" });
                     $('.fbkmail10').closest("tr").removeAttr("tabindex");
                     $('.fbkmail10').closest("tr").addClass("trdelete")
                 }
@@ -1277,7 +1283,7 @@ $(document).on("click touchstart", "#divHotspots0_row1", function (event) {
                     //ITSimModule.ShowCustomPopup()
                     checkMail6 = true;
                     $('.fbkmail7').attr("role", "link");
-                    $('.fbkmail7').attr({"role": "link" ,tabindex:0,"aria-label":"blank subject"});
+                    $('.fbkmail7').attr({ "role": "link", tabindex: 0, "aria-label": "blank subject" });
                     $('.fbkmail7').closest("tr").removeAttr("tabindex");
                     $('.fbkmail7').closest("tr").addClass("trdelete")
                 }
@@ -1287,7 +1293,7 @@ $(document).on("click touchstart", "#divHotspots0_row1", function (event) {
                     //ITSimModule.ShowCustomPopup()
                     checkMail7 = true;
                     $('.fbkmail8').attr("role", "link");
-                    $('.fbkmail8').attr({"role": "link" ,tabindex:0,"aria-label":"blank subject"});
+                    $('.fbkmail8').attr({ "role": "link", tabindex: 0, "aria-label": "blank subject" });
                     $('.fbkmail8').closest("tr").removeAttr("tabindex");
                     $('.fbkmail8').closest("tr").addClass("trdelete")
                 }

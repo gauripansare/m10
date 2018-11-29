@@ -98,13 +98,10 @@ $(document).on("keydown", ".trclick", function (event) {
         if (!$(this).hasClass("selected")) {
             $(this).addClass("selected");
         }
-        if($(".selected").length == 0)
-        {
-            tr_count = 0;
-        }
         //if($(this).hasClass("selected") && $(this).hasClass("trdelete"))
           //  return;
         if (tr_count == 2 && $(".selected").length == 1) {
+            tr_count = 0;
             hotspotclicked = true;
             hotspot = $(this);
             setTimeout(function () {
@@ -161,7 +158,7 @@ $(document).on("click", ".hintlink", function (event) {
         $(this).removeClass("expanded")
         $(this).attr("aria-expanded", "false")
         $(".hintcontainer").slideUp(100);
-        $(".pageheading").focus();
+        $("h2").focus();
         open = "close";
     }
     else {
@@ -202,14 +199,14 @@ $(document).on("click", ".closehintlink", function (event) {
     if ($(this).k_IsDisabled()) return;
     $(".hintlink").removeClass("expanded")
     $(".hintlink").attr("aria-expanded", "false")
-    $(".hintcontainer").slideUp(100, function () { $("h2.pageheading").focus(); });
+    $(".hintcontainer").slideUp(100, function () { 
+        $("h2").attr("tabindex","-1");
+        $("h2").focus();
+     });
     if (_Navigator.IsRevel()) {
         LifeCycleEvents.OnInteraction("Hint button click. Hint closed")
     }
 
-});
-$(window).resize(function () {
-    _ModuleCommon.OrientationChange();
 });
 
 $(window).resize(function () {

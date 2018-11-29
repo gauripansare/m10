@@ -245,9 +245,7 @@ var _Navigator = (function () {
                 }
                 this.SetPageStatus(true);
             }
-            if (_currentPageId == "p4prev" && (_currentPageObject.isAnswered == undefined || !_currentPageObject.isAnswered)) {
-                _currentPageObject.isAnswered = true;
-            }
+            
             this.UpdateProgressBar();
             if (_currentPageId == "p3" && (_currentPageObject.isVisited == undefined || !_currentPageObject.isVisited)) {
                 _NData["p2"].nextPageId = "p3";
@@ -316,7 +314,7 @@ var _Navigator = (function () {
                                 else {
                                     //$(".header-informarion .hintlink").focus();
                                     //$("h2").focus();
-                                    if (isChrome && !isAndroid) {
+                                    if ( isIpad || isChrome) {
                                         $("h2").attr("tabindex", "0");
                                         $("h2").focus();
                                     }
@@ -359,15 +357,6 @@ var _Navigator = (function () {
                             $(".hintlink").k_enable();
                             $(".hintcontent").load("pagedata/hintdata/" + _currentPageObject.hinturl, function () { });
                         }
-                        if(_currentPageId == "p2")
-                        {
-                            $("#titleheader").focus();
-                        }
-                        else
-                        {
-                            $("#progressdiv").focus();
-                        }
-
                         _Navigator.GetBookmarkData();
                     });
                 })
@@ -424,7 +413,14 @@ var _Navigator = (function () {
                 if (typeof (currentQuestionIndex) != 'undefined' && typeof (gRecordData.Questions) != 'undefined' && (currentQuestionIndex + 1) < gRecordData.Questions.length) {
                     currentQuestionIndex = currentQuestionIndex + 1
                     $("#Questioninfo").show();
-                    _Assessment.ShowQuestion()
+                    _Assessment.ShowQuestion();
+                    if (isChrome && !isAndroid) {
+                        $("h2.pageheading").attr("tabindex", "0");
+                        $("h2").focus();
+                    }
+                    else {
+                        $("#progressdiv").focus();
+                    }
                     if (gRecordData.Status != "Completed" && !this.IsPresenterMode()) {
                         $("#linknext").k_disable();
                         $("#linkprevious").k_disable();
