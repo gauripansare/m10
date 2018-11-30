@@ -809,7 +809,6 @@ var _ModuleCommon = (function () {
             }
         },
         LoadFeedback: function (url) {
-            debugger;
             tr_count = 0;//ATUL: 
             var _currentPageObject = _Navigator.GetCurrentPage();
             var fdbkUrl = _Settings.dataRoot + "feedbackdata/" + url;
@@ -1216,7 +1215,6 @@ $(document).on("keydown", ".fbkmail1, .fbkmail2, .fbkmail3, .fbkmail4, .fbkmail5
     }
 });
 $(document).on("click touchstart", "#divHotspots0_row1", function (event) {
-    debugger;
     tr_count = 0;
     var selectedRowID = $('#OutlookMail > tbody > tr.selected').attr("id");
     if (selectedRowID == undefined) { } else {

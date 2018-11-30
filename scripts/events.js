@@ -93,7 +93,6 @@ $(document).on("keydown", ".trclick", function (event) {
             $(".selected").removeClass("selected");
            // $(".trdelete").removeClass("trdelete");
         }
-        debugger;
         tr_count = tr_count + 1;
         if (!$(this).hasClass("selected")) {
             $(this).addClass("selected");
