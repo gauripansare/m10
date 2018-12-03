@@ -478,7 +478,7 @@ inputcircle{
     left: -6px;
     top: -6px;
 }
-.presentationModeFooter {
+.presentationModeFooter, .ScormReviewFooter {
     display: inline-block;
     background-color: #1a76cb;
     height: 29px;

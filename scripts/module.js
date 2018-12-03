@@ -49,7 +49,7 @@ var _ModuleCommon = (function () {
             var pageData = _PData[currentPageData.pageId];
             return pageData;
         },
-        ShowFeedbackReviewMode: function () {
+        ShowFeedbackReviewMode: function (scrollfeedback) { 
             var pageData = this.GetPageDetailData();
             var fdkurl = "";
             if (pageData != undefined) {
@@ -80,8 +80,10 @@ var _ModuleCommon = (function () {
                             $("#div_feedback p:first").attr("role", "text")
                         }
                         $("#div_feedback p:first").attr("tabindex", "-1")
+                        if(scrollfeedback != true){
                         window.scrollTo(0, document.body.scrollHeight)
                         $("#div_feedback p:first").focus();
+                        }
                     });
                 }
             }
@@ -118,11 +120,11 @@ var _ModuleCommon = (function () {
             var Ndata = _Navigator.Get();
             if (_currentPageObject.pageId == "p2") {
                 if (Ndata["p3"].isAnswered == undefined || !Ndata["p3"].isAnswered) {
-                    this.ShowFeedbackReviewMode();
+                    this.ShowFeedbackReviewMode(true);
                 }
             }
             else {
-                this.ShowFeedbackReviewMode();
+                this.ShowFeedbackReviewMode(true);
             }
         },
         DisplayUserReviewMode: function () {
@@ -907,21 +909,16 @@ var _ModuleCommon = (function () {
                 $("#linknext").k_enable();
             }
         },
+         AppendScormReviewFooter: function () {
+            if ($(".ScormReviewFooter").length == 0) {
+                var str = '<div class="ScormReviewFooter"> Review Mode</div>';
+                $("footer").append($(str));
+                $("footer").show();
+                $("#linknext").k_enable();
+            }
+        },
     }
 })();
-function AppendFooter() {
-
-    if ($(".levelfooterdiv").length == 0) {
-        var str = '<div class="levelfooterdiv"><div class="navBtn prev" onClick="GoToPrev()" role="button" tabindex = 195 aria-label="Previous"><a href="#"></a></div><div style="display: inline-block;width: 2px;"></div><div class="boxleveldropdown" style="width: 150px;"  role="button" tabindex = 196 aria-label="Scorecard"><span class="leftarrow"></span><ul class="levelmenu"><li class="uparrow" style = "width: 100px; margin-left: -8px;"><span class="menutitle" >Scorecard</span><div class="levelsubMenu" tabindex = 197 role="text">Total Score - <br>Activity Score - </div><a class="menuArrow"></a></div><div style="display: inline-block;width: 2px;"></div><div class="navBtn next" onClick="GoToNext()" role="button" tabindex = 198 aria-label="Next"><a href="#"></a></div></div>';
-        $("#wrapper").append($(str));
-        $(".navBtn.prev").css({
-            "opacity": ".5",
-            "pointer-events": "none"
-        });
-        $(".navBtn.prev").attr("aria-disabled", "true")
-    }
-}
-
 function DisplaySubmenu() {
     if ($(".levelsubMenu").is(":visible")) {
         $(".levelsubMenu").hide();

@@ -2,6 +2,7 @@
 //It will also handle the question navigation if the page is having multiple questions.
 var _Navigator = (function () {
     var packageType = "";//presenter/scorm/revel
+    var isReviewMode = false;
     var _currentPageId = "";
     var _currentPageObject = {};
     var progressLevels = [20];//ATUL:  pages add, after visit 
@@ -203,6 +204,10 @@ var _Navigator = (function () {
         if (_Navigator.IsPresenterMode()) {
             _ModuleCommon.AppendFooter();
         }
+        if (_Navigator.IsReviewMode()) {
+            $("#linknext").k_enable();
+            $(".start-btn").k_disable();
+        }
         submitCounter = 0;
         if ((/Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent))) {
             $('#footer-navigation').css('display', 'table');
@@ -219,6 +224,11 @@ var _Navigator = (function () {
             this.LoadPage("p1");
             if (this.IsPresenterMode()) {
                 _ModuleCommon.AppendFooter();
+            }
+            
+            if(this.IsReviewMode()){
+                _ModuleCommon.AppendScormReviewFooter();
+                _Assessment.SetCurrentQuestionIndex(0);
             }
         },
         GetProgressLevelsCnt: function () {
@@ -266,6 +276,10 @@ var _Navigator = (function () {
                 $("#linknext").k_enable();
                 $("footer").hide();
                 $("#header-progress").hide();
+                if(this.IsReviewMode()){
+                    _ModuleCommon.AppendScormReviewFooter();
+                    _Assessment.SetCurrentQuestionIndex(0)
+                }
                 if (this.IsPresenterMode())
                     _ModuleCommon.AppendFooter();
 
@@ -414,13 +428,6 @@ var _Navigator = (function () {
                     currentQuestionIndex = currentQuestionIndex + 1
                     $("#Questioninfo").show();
                     _Assessment.ShowQuestion();
-                    if (isChrome && !isAndroid) {
-                        $("h2.pageheading").attr("tabindex", "0");
-                        $("h2").focus();
-                    }
-                    else {
-                        $("#progressdiv").focus();
-                    }
                     if (gRecordData.Status != "Completed" && !this.IsPresenterMode()) {
                         $("#linknext").k_disable();
                         $("#linkprevious").k_disable();
@@ -437,6 +444,13 @@ var _Navigator = (function () {
                     $("#Questioninfo").hide();
                     $("#Summary").load("pagedata/Summary.htm", function () {
                         _Assessment.ShowSummary()
+                        if (isChrome && !isAndroid) {
+                            $("h2.pageheading").attr("tabindex", "0");
+                            $("h2").focus();
+                        }
+                        else {
+                            $("#progressdiv").focus();
+                        }
                         $("#linkprevious").k_enable();
                         $("#Summary").find("input[type='radio']").attr("readonly", "readonly");
                         $(".question-band").find("img").attr("aria-hidden", "true");
@@ -508,6 +522,12 @@ var _Navigator = (function () {
                 _NData[_currentPageId].points = points;
                 this.UpdateScore();
             }
+        },
+        IsReviewMode: function(){
+            return isReviewMode;
+        },
+        SetIsReviewMode: function(isReviewModeStatus){
+            isReviewMode = isReviewModeStatus;
         },
         SetPageStatus: function (isAnswered) {
             if (isAnswered) {
@@ -631,6 +651,9 @@ var _Navigator = (function () {
                 _ScormUtility.Init();
                 _Navigator.SetBookmarkData();
                 //bookmarkpageid = _ScormUtility.GetBookMark();
+                if(_ScormUtility.IsScormReviewMode()){
+                    _Navigator.SetIsReviewMode(true);
+                }
                 this.GotoBookmarkPage();
             }
             else if (packageType == "revel") {
