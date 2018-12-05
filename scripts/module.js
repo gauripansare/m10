@@ -389,6 +389,47 @@ var _ModuleCommon = (function () {
                 var Nadata = _Navigator.Get();
                 Nadata["p4prev"].isAnswered = true;
             }
+            if (_Navigator.IsPresenterMode()) {
+                $(".startbtn").k_disable();
+                $("#linknext").k_enable();
+                this.PresenterMode();
+            }
+        },
+        PresenterMode: function () {
+            debugger;
+            var currentPageData = _Navigator.GetCurrentPage();
+            var _ndata = _Navigator.Get();
+            var pageData = this.GetPageDetailData();
+            var appendImage = $(".wrapperimage");
+            if (pageData != undefined) {
+                if (currentPageData.pageId == "p4prev" && (_ndata['p4prev2'].isVisited == undefined || !_ndata['p4prev2'].isVisited)) {
+                    _div ='<div class="reviewDiv Correct" style="z-index:5;width:39px;height:39px;position:absolute;left:361.5px;top:163px;"><img src="assets/images/review-correct.png" style="width:39px;height:35px;"></div>';
+                    appendImage.append(_div);
+                }
+                else if (currentPageData.pageId == "p4") {
+                    $(".divHotSpot").addClass("hotspotclicked");
+                    $(".divHotSpot").addClass("disabled");
+                }
+                else if (pageData.ImageHotSpots != undefined ) {
+                    for (var i = 0; i < pageData.ImageHotSpots.Hotspots.length; i++) {
+                        var posObj = "";
+                        var _div = ""
+                        if (pageData.ImageHotSpots.Hotspots[i].isCorrect != undefined && pageData.ImageHotSpots.Hotspots[i].isCorrect) {
+                            posObj = pageData.ImageHotSpots.Hotspots[i];
+                            _div = "<div class='reviewDiv Correct' style='z-index:5;width:39px;height:39px;position:absolute;left:" + posObj.left + ";top:" + posObj.top + ";'><img src='assets/images/review-correct.png' style='width:39px;height:35px;' /></div>";
+                            $(".divHotSpot").addClass("hotspotclicked");
+                            $(".divHotSpot").addClass("disabled");
+                            appendImage.append(_div);
+                        }
+                    }
+                }
+            }
+            //}
+            $("#linknext").k_enable();
+            if (currentPageData.pageId == "p4") {
+                currentPageData.nextPageId = "p17";
+            }
+            _Navigator.UpdateProgressBar();
         },
         LoadHotSpot: function () {
 
@@ -436,11 +477,6 @@ var _ModuleCommon = (function () {
                 }
 
             }
-        },
-        PresenterMode: function () {
-            $(".divHotSpot").addClass("hotspotclicked");
-            $(".divHotSpot").addClass("disabled").attr("disabled", "true");
-            $("#linknext").k_enable();
         },
         ApplycontainerWidth: function () {
             var innerWidth = $(window).width();
@@ -527,7 +563,8 @@ var _ModuleCommon = (function () {
                     }
                 default:
                     break;
-            }
+            }            
+            _Navigator.GetBookmarkData();
         },
         TrClick: function (_hotspot, event) {
             var action = "feedback";//_hotspot.attr("action")
