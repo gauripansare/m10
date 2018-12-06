@@ -106,7 +106,14 @@ var _Assessment = (function () {
 				$(".intro-content-question").fadeIn(600)
 			}
 
-			$("#Questioninfo").focus();
+			if(isAndroid){
+				setTimeout( function(){
+					$("#Questioninfo").focus();
+				}, 0);
+			}
+			else {
+				$("#Questioninfo").focus();
+			}
 			if (gRecordData.Status != "Completed") {
 				$("#linknext").k_disable();
 				if (currentQuestionIndex != 0) {

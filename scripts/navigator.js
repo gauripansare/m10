@@ -324,6 +324,12 @@ var _Navigator = (function () {
                                 if (_currentPageObject.pageId == "p2") {
                                     $("#titleheader").focus();
                                 }
+                                else if(isIpad && _currentPageId != quizpageid){
+                                    $("#titleheader").focus();
+                                    setTimeout( function(){
+                                        $("#progressdiv").focus();
+                                    },0);
+                                }
                                 else if ((isIphone || isAndroid) && _NData[_currentPageId].isLoaded != undefined && _NData[_currentPageId].isLoaded == true) {//iphone android on previous focus is set to header
                                     $("h2").attr("tabindex", "0");
                                     $("h2").focus();
@@ -406,14 +412,17 @@ var _Navigator = (function () {
             if (_Navigator.IsRevel()) {
                 LifeCycleEvents.OnInteraction("Previous link click.")
             }
-            if (_currentPageObject.pageId == quizpageid && typeof (currentQuestionIndex) != 'undefined' && currentQuestionIndex > 0) {
+            if (_currentPageObject.pageId == quizpageid && typeof (currentQuestionIndex) != 'undefined' && currentQuestionIndex > 0) {                
+                if(isIphone){
+                    $("#progressdiv").focus();
+                }                
                 $("#ReviewIns").hide();
                 $(".intro-content-question").show();
                 $("#Questioninfo").show();
                 currentQuestionIndex = currentQuestionIndex - 1;
                 $("#Summary").empty();
                 $("#Summary").hide();
-                _Assessment.ShowQuestion();
+                _Assessment.ShowQuestion();                
             }
             else {
                 this.LoadPage(_currentPageObject.prevPageId);
@@ -430,7 +439,9 @@ var _Navigator = (function () {
                 this.LoadPage(_currentPageObject.customNext);
             }
             if (_currentPageObject.pageId == quizpageid) {
-
+                if(isIphone){
+                    $("#progressdiv").focus();
+                }
                 if (typeof (currentQuestionIndex) != 'undefined' && typeof (gRecordData.Questions) != 'undefined' && (currentQuestionIndex + 1) < gRecordData.Questions.length) {
                     currentQuestionIndex = currentQuestionIndex + 1
                     $("#Questioninfo").show();
