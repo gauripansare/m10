@@ -72,7 +72,7 @@
                     },
                     {
                         QuestionId: "3",
-                        QuestionText: "An email message arrives from someone in your organization whom you know. The message contains no subject line and the body of the email message contains only a web link to an unfamiliar site. What is the best thing to do with this message?",
+                        QuestionText: "An email message arrives from someone in your organization whom you know. The message contains no subject line and in the preview you see that the body of the email message contains only a web link to an unfamiliar site. What is the best thing to do with this message?",
                         Options: [
                                      {
                                          "OptionId": "1",

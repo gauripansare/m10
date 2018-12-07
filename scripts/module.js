@@ -90,6 +90,7 @@ var _ModuleCommon = (function () {
         },
         DisplayInstructorReviewMode: function () {
             $(".reviewDiv").remove();
+            var _currentPageObject = _Navigator.GetCurrentPage();
             var pageDetailData = this.GetPageDetailData();
             var reviewData = this.GetPageReviewData();
             if (reviewData != undefined && reviewData.Positions != undefined && reviewData.Positions.length > 0) {
@@ -106,6 +107,10 @@ var _ModuleCommon = (function () {
                     if (posObj.posX > 758) {
                         posObj.posX = 758;
                     }
+                    if(_currentPageObject.pageId == "p4prev"){
+                        posObj.posY = 160;
+                        posObj.posX = 260;
+                    }
                     if (posObj.isCorrect) {
                         var _div = "<div class='reviewDiv Correct' style='z-index:5;width:39px;height:39px;position:absolute;left:" + posObj.posX + "px;top:" + posObj.posY + "px;'><img src='assets/images/review-correct.png' style='width:39px;height:35px;' /></div>";
                         appendImage.append(_div);
@@ -114,9 +119,7 @@ var _ModuleCommon = (function () {
                         appendImage.append(_divI);
                     }
                 }
-            }
-
-            var _currentPageObject = _Navigator.GetCurrentPage();
+            }            
             var Ndata = _Navigator.Get();
             if (_currentPageObject.pageId == "p2") {
                 if (Ndata["p3"].isAnswered == undefined || !Ndata["p3"].isAnswered) {
@@ -358,12 +361,12 @@ var _ModuleCommon = (function () {
                         $("#main_feedback").load(fdbkUrl2, function () {
                             // this.SetFeedbackTop()
                             //$('html,body').animate({ scrollTop: document.body.scrollHeight }, 1000, function () { });
-                            if (isIOS) {
+                            /*if (isIOS) {
                                 $("#div_feedback p:first").attr("role", "text")
                             }
                             $("#div_feedback p:first").attr("tabindex", "-1")
                             window.scrollTo(0, document.body.scrollHeight)
-                            $("#div_feedback p:first").focus();
+                            $("#div_feedback p:first").focus();*/
                         });
                     }
                     $("#divHotspots0_row1").addClass("disabled");

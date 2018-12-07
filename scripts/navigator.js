@@ -337,7 +337,7 @@ var _Navigator = (function () {
                                 else {
                                     //$(".header-informarion .hintlink").focus();
                                     //$("h2").focus();
-                                    if ( isIpad || isChrome) {
+                                    if ( ( isIpad || isChrome ) && !isAndroid) {
                                         $("h2").attr("tabindex", "0");
                                         $("h2").focus();
                                     }
