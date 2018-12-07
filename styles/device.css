@@ -110,6 +110,7 @@
     }
     .header-content-dock .progressdiv{
         margin-top:4px;
+        margin-left: 0px;
     }
 
     .header-content-dock .hintlinkspan{
@@ -176,6 +177,8 @@
             }
 }
 
-
-@media screen and (max-width : 420px) {
+@media screen and (max-width: 420px){
+.intro-content .hintDiv {
+    width: 70px !important;
+}
 }
