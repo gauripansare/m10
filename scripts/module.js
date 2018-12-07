@@ -49,7 +49,7 @@ var _ModuleCommon = (function () {
             var pageData = _PData[currentPageData.pageId];
             return pageData;
         },
-        ShowFeedbackReviewMode: function (scrollfeedback) { 
+        ShowFeedbackReviewMode: function (scrollfeedback) {
             var pageData = this.GetPageDetailData();
             var fdkurl = "";
             if (pageData != undefined) {
@@ -80,9 +80,9 @@ var _ModuleCommon = (function () {
                             $("#div_feedback p:first").attr("role", "text")
                         }
                         $("#div_feedback p:first").attr("tabindex", "-1")
-                        if(scrollfeedback != true){
-                        window.scrollTo(0, document.body.scrollHeight)
-                        $("#div_feedback p:first").focus();
+                        if (scrollfeedback != true) {
+                            window.scrollTo(0, document.body.scrollHeight)
+                            $("#div_feedback p:first").focus();
                         }
                     });
                 }
@@ -107,7 +107,7 @@ var _ModuleCommon = (function () {
                     if (posObj.posX > 758) {
                         posObj.posX = 758;
                     }
-                    if(_currentPageObject.pageId == "p4prev"){
+                    if (_currentPageObject.pageId == "p4prev") {
                         posObj.posY = 160;
                         posObj.posX = 260;
                     }
@@ -119,7 +119,7 @@ var _ModuleCommon = (function () {
                         appendImage.append(_divI);
                     }
                 }
-            }            
+            }
             var Ndata = _Navigator.Get();
             if (_currentPageObject.pageId == "p2") {
                 if (Ndata["p3"].isAnswered == undefined || !Ndata["p3"].isAnswered) {
@@ -344,7 +344,6 @@ var _ModuleCommon = (function () {
                     allComplete = false;
                 }
                 if (allComplete) {
-                    _Navigator.SetPageStatus(true);
                     if (_currentPageObject.nextPageId == "p17")//show review mode for mailbox if user revisits page
                     {
                         this.MailboxReview();
@@ -361,17 +360,19 @@ var _ModuleCommon = (function () {
                         $("#main_feedback").load(fdbkUrl2, function () {
                             // this.SetFeedbackTop()
                             //$('html,body').animate({ scrollTop: document.body.scrollHeight }, 1000, function () { });
-                            /*if (isIOS) {
-                                $("#div_feedback p:first").attr("role", "text")
+                            if (!_Navigator.IsAnswered()) {
+                                if (isIOS) {
+                                    $("#div_feedback p:first").attr("role", "text")
+                                }
+                                $("#div_feedback p:first").attr("tabindex", "-1")
+                                window.scrollTo(0, document.body.scrollHeight)
+                                $("#div_feedback p:first").focus();
                             }
-                            $("#div_feedback p:first").attr("tabindex", "-1")
-                            window.scrollTo(0, document.body.scrollHeight)
-                            $("#div_feedback p:first").focus();*/
+                            _Navigator.SetPageStatus(true);
                         });
                     }
                     $("#divHotspots0_row1").addClass("disabled");
                     this.EnableNext();
-
 
                 }
                 else {
@@ -406,14 +407,14 @@ var _ModuleCommon = (function () {
             var appendImage = $(".wrapperimage");
             if (pageData != undefined) {
                 if (currentPageData.pageId == "p4prev" && (_ndata['p4prev2'].isVisited == undefined || !_ndata['p4prev2'].isVisited)) {
-                    _div ='<div class="reviewDiv Correct" style="z-index:5;width:39px;height:39px;position:absolute;left:361.5px;top:163px;"><img src="assets/images/review-correct.png" style="width:39px;height:35px;"></div>';
+                    _div = '<div class="reviewDiv Correct" style="z-index:5;width:39px;height:39px;position:absolute;left:361.5px;top:163px;"><img src="assets/images/review-correct.png" style="width:39px;height:35px;"></div>';
                     appendImage.append(_div);
                 }
                 else if (currentPageData.pageId == "p4") {
                     $(".divHotSpot").addClass("hotspotclicked");
                     $(".divHotSpot").addClass("disabled");
                 }
-                else if (pageData.ImageHotSpots != undefined ) {
+                else if (pageData.ImageHotSpots != undefined) {
                     for (var i = 0; i < pageData.ImageHotSpots.Hotspots.length; i++) {
                         var posObj = "";
                         var _div = ""
@@ -566,7 +567,7 @@ var _ModuleCommon = (function () {
                     }
                 default:
                     break;
-            }            
+            }
             _Navigator.GetBookmarkData();
         },
         TrClick: function (_hotspot, event) {
@@ -949,7 +950,7 @@ var _ModuleCommon = (function () {
                 $("#linknext").k_enable();
             }
         },
-         AppendScormReviewFooter: function () {
+        AppendScormReviewFooter: function () {
             if ($(".ScormReviewFooter").length == 0) {
                 var str = '<div class="ScormReviewFooter"> Review Mode</div>';
                 $("footer").append($(str));
