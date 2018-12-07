@@ -209,6 +209,7 @@ $(document).on("click", ".closehintlink", function (event) {
 });
 
 $(window).resize(function () {
+    $(".header-content-dock").css({ "visibility": "hidden", "top": "-80px"})
     _ModuleCommon.OrientationChange();
 });
 
