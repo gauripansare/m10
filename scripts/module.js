@@ -121,13 +121,15 @@ var _ModuleCommon = (function () {
                 }
             }
             var Ndata = _Navigator.Get();
-            if (_currentPageObject.pageId == "p2") {
-                if (Ndata["p3"].isAnswered == undefined || !Ndata["p3"].isAnswered) {
+            if (!_Navigator.IsPresenterMode()) {
+                if (_currentPageObject.pageId == "p2") {
+                    if (Ndata["p3"].isAnswered == undefined || !Ndata["p3"].isAnswered) {
+                        this.ShowFeedbackReviewMode(true);
+                    }
+                }
+                else {
                     this.ShowFeedbackReviewMode(true);
                 }
-            }
-            else {
-                this.ShowFeedbackReviewMode(true);
             }
         },
         DisplayUserReviewMode: function () {
@@ -400,7 +402,6 @@ var _ModuleCommon = (function () {
             }
         },
         PresenterMode: function () {
-            debugger;
             var currentPageData = _Navigator.GetCurrentPage();
             var _ndata = _Navigator.Get();
             var pageData = this.GetPageDetailData();
@@ -420,6 +421,9 @@ var _ModuleCommon = (function () {
                         var _div = ""
                         if (pageData.ImageHotSpots.Hotspots[i].isCorrect != undefined && pageData.ImageHotSpots.Hotspots[i].isCorrect) {
                             posObj = pageData.ImageHotSpots.Hotspots[i];
+                            if (posObj.left == "96%") {
+                                posObj.left = "95%";
+                            }
                             _div = "<div class='reviewDiv Correct' style='z-index:5;width:39px;height:39px;position:absolute;left:" + posObj.left + ";top:" + posObj.top + ";'><img src='assets/images/review-correct.png' style='width:39px;height:35px;' /></div>";
                             $(".divHotSpot").addClass("hotspotclicked");
                             $(".divHotSpot").addClass("disabled");
