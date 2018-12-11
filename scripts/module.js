@@ -410,7 +410,7 @@ var _ModuleCommon = (function () {
                 if (currentPageData.pageId == "p4prev" && (_ndata['p4prev2'].isVisited == undefined || !_ndata['p4prev2'].isVisited)) {
                     _div = '<div class="reviewDiv Correct" style="z-index:5;width:39px;height:39px;position:absolute;left:361.5px;top:163px;"><img src="assets/images/review-correct.png" style="width:39px;height:35px;"></div>';
                     appendImage.append(_div);
-                }
+                }                
                 else if (currentPageData.pageId == "p4") {
                     $(".divHotSpot").addClass("hotspotclicked");
                     $(".divHotSpot").addClass("disabled");
@@ -429,6 +429,11 @@ var _ModuleCommon = (function () {
                             $(".divHotSpot").addClass("disabled");
                             appendImage.append(_div);
                         }
+                    }
+                    // 
+                    if (currentPageData.pageId == "p6" || currentPageData.pageId == "p7" || currentPageData.pageId == "p8" || currentPageData.pageId == "p11" || currentPageData.pageId == "p13" || currentPageData.pageId == "p15" || currentPageData.pageId == "p16" ) {
+                        _div = '<div class="reviewDiv Correct" style="z-index:5;width:39px;height:39px;position:absolute;left:56px;top:63px;"><img src="assets/images/review-correct.png" style="width:39px;height:35px;"></div>';
+                        appendImage.append(_div);
                     }
                 }
             }
