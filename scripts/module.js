@@ -947,17 +947,12 @@ var _ModuleCommon = (function () {
             var _div = "<div class='reviewDiv Correct' style='z-index:10000;width:20px;height:20px;margin-left:" + 0 + "px;margin-top:" + 0 + "px;'><img src='assets/images/correct-icon.png' style='width:20px;height:20px;' /></div>";
             $("#row1").find("td:first").append(_div);
         },
-        AppendFooter: function () {
-            if ($(".presentationModeFooter").length == 0) {
-                var str = '<div class="presentationModeFooter">Presentation Mode</div>';
-                $("footer").append($(str));
+         AppendFooter: function () {           
+                $("#header-progress .presentationModeFooter").show();             
+                
                 $("footer").show();
-                $("#linknext").k_enable();
-            }
-            else {
-                $("footer").show();
-                $("#linknext").k_enable();
-            }
+                $("#linknext").k_enable();           
+            
         },
         AppendScormReviewFooter: function () {
             if ($(".ScormReviewFooter").length == 0) {
