@@ -11,6 +11,7 @@ var _Navigator = (function () {
     var bookmarkpageid = "";
     var retrycnt = 1;
     var quizpageid = "p17";
+    var Summarybookmark = false;
     var _NData = {
         "p1": {
             pageId: "p1",
@@ -377,9 +378,32 @@ var _Navigator = (function () {
                         }
                         if (_currentPageId == quizpageid)//  change to assessment id
                         {
-                            _Assessment.ShowQuestion();
-                            $("h2.pageheading").attr("tabindex", "0");
-                            $("h2").focus();
+                            if (Summarybookmark) {
+
+                                $(".intro-content-question").hide();
+                                $(".questionwrapper").hide();
+                                $("#Summary").show();
+                                $("#Questioninfo").hide();
+                                $("#Summary").load("pagedata/Summary.htm", function () {
+                                    _Assessment.ShowSummary();
+                                    if (isChrome && !isAndroid) {
+                                        $("h2.pageheading").attr("tabindex", "0");
+                                        $("h2").focus();
+                                    }
+                                    else {
+                                        $("#progressdiv").focus();
+                                    }
+                                    $("#linkprevious").k_enable();
+
+                                })
+                                $("#climate-deal").css("margin-left", "23%");
+                                $("#linknext").k_disable();
+                            }
+                            else {
+                                _Assessment.ShowQuestion();
+                                $("h2.pageheading").attr("tabindex", "0");
+                                $("h2").focus();
+                            }
                         }
 
                         $("#hintdiv").show();
@@ -408,6 +432,9 @@ var _Navigator = (function () {
             }
 
         },
+        GetSummarybookmark: function () {
+            return Summarybookmark;
+        },
         LoadDefaultQuestion: function () {
             if (_currentPageObject.questions.length > 0) {
                 _questionId = 0;
@@ -424,6 +451,7 @@ var _Navigator = (function () {
             }
         },
         Prev: function () {
+            Summarybookmark = false;
             if (_Navigator.IsRevel()) {
                 LifeCycleEvents.OnInteraction("Previous link click.")
             }
@@ -445,6 +473,7 @@ var _Navigator = (function () {
 
         },
         Next: function () {
+            Summarybookmark = false;
             if (_Navigator.IsRevel()) {
                 LifeCycleEvents.OnInteraction("Previous link click.")
             }
@@ -476,7 +505,9 @@ var _Navigator = (function () {
                     $("#Summary").show();
                     $("#Questioninfo").hide();
                     $("#Summary").load("pagedata/Summary.htm", function () {
-                        _Assessment.ShowSummary()
+                        Summarybookmark = true;
+                        _Navigator.GetBookmarkData();
+                        _Assessment.ShowSummary();
                         if (isChrome && !isAndroid) {
                             $("h2.pageheading").attr("tabindex", "0");
                             $("h2").focus();
@@ -600,7 +631,7 @@ var _Navigator = (function () {
             }
         },
         GetBookmarkData: function () {
-            if (!this.IsScorm() && !this.IsRevel())
+            if (!this.IsScorm() && !this.IsRevel() && this.IsReviewMode())
                 return;
             var bookmarkobj = {}
             bookmarkobj.BMPageId = bookmarkpageid;
@@ -610,6 +641,7 @@ var _Navigator = (function () {
             //bookmarkobj.ProgressLevels = progressLevels;
             bookmarkobj.ReviewData = _ModuleCommon.GetReviewData();
             bookmarkobj.AssessmentData = _Assessment.Getbookmarkdata();
+            bookmarkobj.Summarybookmark = _Navigator.GetSummarybookmark();
             if (this.IsRevel()) {
                 if (k_Revel.get_LaunchData().mode == LaunchModes.do) {
                     var suspend_data = JSON.stringify(bookmarkobj);
@@ -641,6 +673,9 @@ var _Navigator = (function () {
         },
 
         SetBookMarkPage: function () {
+            if(this.IsReviewMode()){
+                return;
+            }
             if (!this.IsScorm() && !this.IsRevel())
                 return;
             if (this.IsScorm()) {
@@ -664,6 +699,7 @@ var _Navigator = (function () {
                 bookmarkdata = JSON.parse(bookmarkdata);
                 bookmarkpageid = bookmarkdata.BMPageId;
                 retrycnt = bookmarkdata.BMretrycnt;
+                Summarybookmark = bookmarkdata.Summarybookmark
                 _ModuleCommon.Setg_RuntimeData(bookmarkdata.BMg_RuntimeData);
                 this.SetNavigatorBMData(bookmarkdata.VisistedPages)
                 //progressLevels = bookmarkdata.ProgressLevels;
@@ -727,9 +763,13 @@ var _Navigator = (function () {
             }
         },
         GotoBookmarkPage: function () {
-
-            if (bookmarkpageid != undefined && bookmarkpageid != "") {
-                _Navigator.LoadPage(bookmarkpageid)
+            if (bookmarkpageid != undefined && bookmarkpageid != "" && !this.IsReviewMode()) {
+                if (Summarybookmark) {
+                    _Navigator.LoadPage(quizpageid);
+                }
+                else {
+                    _Navigator.LoadPage(bookmarkpageid)
+                }
             }
             else {
                 _Navigator.Start();
