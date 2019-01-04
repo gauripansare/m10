@@ -121,8 +121,7 @@ var _ModuleCommon = (function () {
                 }
             }
             var Ndata = _Navigator.Get();
-            if (!_Navigator.IsPresenterMode()) {
-                if (_currentPageObject.pageId == "p2") {
+            if (_currentPageObject.pageId == "p2") {
                     if (Ndata["p3"].isAnswered == undefined || !Ndata["p3"].isAnswered) {
                         this.ShowFeedbackReviewMode(true);
                     }
@@ -130,7 +129,7 @@ var _ModuleCommon = (function () {
                 else {
                     this.ShowFeedbackReviewMode(true);
                 }
-            }
+            
         },
         DisplayUserReviewMode: function () {
             $(".reviewDiv").remove();
@@ -396,13 +395,16 @@ var _ModuleCommon = (function () {
                 Nadata["p4prev"].isAnswered = true;
             }
             if (_Navigator.IsPresenterMode()) {
-                $(".startbtn").k_disable();
+                //$(".startbtn").k_disable();
+                if (_currentPageObject.pageId == "p4") {
+                    _currentPageObject.nextPageId = "p17";
+                }
                 $("#linknext").k_enable();
-                this.PresenterMode();
+                //this.PresenterMode();
             }
         },
         PresenterMode: function () {
-            var currentPageData = _Navigator.GetCurrentPage();
+            /*var currentPageData = _Navigator.GetCurrentPage();
             var _ndata = _Navigator.Get();
             var pageData = this.GetPageDetailData();
             var appendImage = $(".wrapperimage");
@@ -443,6 +445,7 @@ var _ModuleCommon = (function () {
                 currentPageData.nextPageId = "p17";
             }
             _Navigator.UpdateProgressBar();
+            */
         },
         LoadHotSpot: function () {
 
@@ -1236,9 +1239,6 @@ $(document).on("click", '.fbkmail8', function (event) {
 // delete hotspot click for particular feedback popup
 
 $(document).on("keydown", "#divHotspots0_row1", function (event) {
-    if (_Navigator.IsPresenterMode()) {
-        return;
-    }
     if (window.event) {
         key = window.event.keyCode;
     } else if (event) {
@@ -1249,9 +1249,6 @@ $(document).on("keydown", "#divHotspots0_row1", function (event) {
     }
 });
 $(document).on("keydown", ".fbkmail1, .fbkmail2, .fbkmail3, .fbkmail4, .fbkmail5, .fbkmail6, .fbkmail7, .fbkmail8, .fbkmail10, .fbkmail11", function (event) {
-    if (_Navigator.IsPresenterMode()) {
-        return;
-    }
     if (window.event) {
         key = window.event.keyCode;
     } else if (event) {

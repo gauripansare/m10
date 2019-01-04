@@ -12,9 +12,7 @@ $(document).on("click", ".qheight", function (event) {
 var hotspotclicked = false;;
 var hotspot;
 $(document).on("click", ".divHotSpot", function (event) {
-    if (_Navigator.IsPresenterMode()) {
-        return;
-    }
+    
     event.preventDefault();
     //$(this).k_disable()
     /*if (hotspotclicked || _Navigator.IsAnswered())
@@ -32,9 +30,6 @@ $(document).on("click", ".divHotSpot", function (event) {
 
 });
 $(document).on("dblclick", ".divHotSpotDbClick", function (event) {
-    if (_Navigator.IsPresenterMode()) {
-        return;
-    }
     event.preventDefault();
     $(this).k_disable()
     if (hotspotclicked || _Navigator.IsAnswered())
@@ -51,9 +46,6 @@ $(document).on("dblclick", ".divHotSpotDbClick", function (event) {
 });
 
 $(document).on("keydown", ".divHotSpotDbClick", function (event) {
-    if (_Navigator.IsPresenterMode()) {
-        return;
-    }
     if (window.event) {
         key = window.event.keyCode;
     } else if (event) {
