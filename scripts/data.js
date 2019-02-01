@@ -1360,7 +1360,6 @@ var _PData = {
           rowId: "row12",
           deletemail: true,
           isCorrect: false,
-          visibility: false,
           visibility: false
         },
         {
@@ -1377,7 +1376,6 @@ var _PData = {
           rowId: "row12",
           deletemail: true,
           isCorrect: true,
-          visibility: false,
           visibility: false
         },
         {

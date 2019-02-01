@@ -1,7 +1,7 @@
 ﻿//This api will contain navigation logic and page load.
 //It will also handle the question navigation if the page is having multiple questions.
 var _Navigator = (function () {
-    var packageType = "";//presenter/scorm/revel
+    var packageType = "presenter";//presenter/scorm/revel
     var isReviewMode = false;
     var _currentPageId = "";
     var _currentPageObject = {};
@@ -676,6 +676,9 @@ var _Navigator = (function () {
                 _NData[gVisistedPages[i].id].isAnswered = true;
                 _NData[gVisistedPages[i].id].prevPageId = gVisistedPages[i].prev;
                 _NData[gVisistedPages[i].id].nextPageId = gVisistedPages[i].next;
+                if(_NData[gVisistedPages[i].id].pageId == "p3"){
+                    progressLevels[0] = (progressLevels[0] + 1);
+                }
             }
         },
 

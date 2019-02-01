@@ -650,7 +650,7 @@ var _ModuleCommon = (function () {
                         }
 
                         //delete mail
-                        if (pageData.ImageHotSpots.Hotspots[i].deletemail != undefined && pageData.ImageHotSpots.Hotspots[i].deletemail == true) {
+                        if (pageData.ImageHotSpots.Hotspots[i].deletemail != undefined && pageData.ImageHotSpots.Hotspots[i].deletemail == true && pageData.ImageHotSpots.Hotspots[i].isCorrect != undefined && pageData.ImageHotSpots.Hotspots[i].isCorrect == true) {
                             this.Updatecorrectstatusfromemail(_hotspot.attr("rowId"), "Deleted");
                         }
                     }
@@ -729,7 +729,7 @@ var _ModuleCommon = (function () {
                     if (pageData.ImageHotSpots != undefined) {
                         for (var i = 0; i < pageData.ImageHotSpots.Hotspots.length; i++) {
                             if (pageData.ImageHotSpots.Hotspots[i].HotspotId == _hotspot.attr("hsid")) {
-                                if (pageData.ImageHotSpots.Hotspots[i].deletemail != undefined && pageData.ImageHotSpots.Hotspots[i].deletemail == true) {
+                                if (pageData.ImageHotSpots.Hotspots[i].deletemail != undefined && pageData.ImageHotSpots.Hotspots[i].deletemail == true && pageData.ImageHotSpots.Hotspots[i].isCorrect != undefined && pageData.ImageHotSpots.Hotspots[i].isCorrect == true) {
                                     this.Updatecorrectstatusfromemail(_hotspot.attr("rowId"), "Deleted");
                                 }
                             }
