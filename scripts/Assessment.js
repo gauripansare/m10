@@ -319,7 +319,7 @@ var _Assessment = (function () {
 			}
 			
 			_Navigator.UpdateProgressBar();
-			$("#progressdiv").focus();
+			$("#summaryheading").attr({tabindex: "-1", role: "heading"}).focus();
 		},
 		SetScore: function (perscore) {
 			if (_Navigator.IsScorm() && !_Navigator.IsReviewMode()) {

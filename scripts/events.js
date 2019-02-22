@@ -73,6 +73,9 @@ window.addEventListener('keypress', function (e) {
     if (e.keyCode !== 13) {
     }
 }, false);
+
+
+
 $(document).on("keydown", ".trclick", function (event) {
     if (window.event) {
         key = window.event.keyCode;
