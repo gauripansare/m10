@@ -1,7 +1,7 @@
 ﻿//This api will contain navigation logic and page load.
 //It will also handle the question navigation if the page is having multiple questions.
 var _Navigator = (function () {
-    var packageType = "scorm";//presenter/scorm/revel
+    var packageType = "";//presenter/scorm/revel
     var isReviewMode = false;
     var _currentPageId = "";
     var _currentPageObject = {};
@@ -217,17 +217,25 @@ var _Navigator = (function () {
             }
         }
         if (_currentPageObject.pageId == "p4" || _currentPageObject.pageId == "p4prev") {
-           // $("#OutlookMail td").attr("role","text");
+            if(Firefox){
+                $("#OutlookMail").attr("role","presentation");
+            }
+            if(isIOS){
+                $("#OutlookMail .accessibility").css("position","absolute");
+            }
             if (_currentPageObject.isAnswered != undefined && _currentPageObject.isAnswered) {
-                $("#Email_instruction").html("");
+                $(".Email_instruction").html("");
             }
             else {
                 if (!isIpad && !isIphone && !isAndroid) {
-                    if (isIE11version || isChrome) {
-                        $("#Email_instruction").html("Press Shift + Enter key to select an email.  Press Shift + Double Enter to open an email");
+                    if (isIE11version) {
+                        $(".Email_instruction").html("Press Enter key to select an email.  Press Shift + Double Enter to open an email");
+                    }
+                    else if (isChrome || Firefox) {
+                        $(".Email_instruction").html("Press Shift + Enter key to select an email.  Press Shift + Double Enter to open an email");                    
                     }
                     else{
-                    $("#Email_instruction").html("Press Enter key to select an email.  Press Double Enter to open an email");
+                    $(".Email_instruction").html("Press Enter key to select an email.  Press Double Enter to open an email");
                     }
                 }
                 

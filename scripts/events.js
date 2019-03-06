@@ -12,7 +12,7 @@ $(document).on("click", ".qheight", function (event) {
 var hotspotclicked = false;;
 var hotspot;
 $(document).on("click", ".divHotSpot", function (event) {
-    
+    if ($(this).k_IsDisabled()) return;
     event.preventDefault();
     //$(this).k_disable()
     /*if (hotspotclicked || _Navigator.IsAnswered())
@@ -30,6 +30,7 @@ $(document).on("click", ".divHotSpot", function (event) {
 
 });
 $(document).on("dblclick", ".divHotSpotDbClick", function (event) {
+    if ($(this).k_IsDisabled()) return;
     event.preventDefault();
     $(this).k_disable()
     if (hotspotclicked || _Navigator.IsAnswered())

@@ -503,8 +503,9 @@ inputcircle{
     height: 67px;
 }
 .accessibility{
-    font-size: 0px;
+    font-size: 2px;
     opacity: 0;
+    position: absolute;
 }
 .questioninnerwrapper legend{
     width: 100%;
