@@ -229,7 +229,7 @@ var _Navigator = (function () {
             else {
                 if (!isIpad && !isIphone && !isAndroid) {
                     if (isIE11version) {
-                        $(".Email_instruction").html("Press Enter key to select an email.  Press Shift + Double Enter to open an email");
+                        $(".Email_instruction").html("Press Enter key to select an email and then press Shift + Double Enter to open an email.");
                     }
                     else if (isChrome || Firefox) {
                         $(".Email_instruction").html("Press Shift + Enter key to select an email.  Press Shift + Double Enter to open an email");                    
@@ -237,8 +237,10 @@ var _Navigator = (function () {
                     else{
                     $(".Email_instruction").html("Press Enter key to select an email.  Press Double Enter to open an email");
                     }
-                }
-                
+                }                
+            }
+            if (isIpad || isIphone || isAndroid) {
+                $("#divHotspots0_row1").hide();
             }
         }
         if (_Navigator.IsPresenterMode() || _Navigator.IsReviewMode()) {

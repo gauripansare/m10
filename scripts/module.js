@@ -907,7 +907,9 @@ var _ModuleCommon = (function () {
                         var fdbkUrl2 = _Settings.dataRoot + "feedbackdata/feedbackc3p4.htm";
                         if (url != "feedbackc3p4.htm") {
                             $("#main_feedback").load(fdbkUrl2, function () {
+                                setTimeout(function(){
                                 $(".div_fdkcontent>p")[2].remove();
+                            });
                                 //$('html,body').animate({ scrollTop: document.body.scrollHeight }, 1000, function () { });
 
                             });
@@ -1268,6 +1270,9 @@ $(document).on("click touchstart", "#divHotspots0_row1", function (event) {
                     $('.fbkmail1').attr({ tabindex: 0 });
                     $('.fbkmail1').closest("tr").removeAttr("tabindex");
                     $('.fbkmail1').closest("tr").addClass("trdelete")
+                    if(isIE11version){
+                        $('.fbkmail1').attr({"role": "link", "aria-label": "Subject: Blank"});
+                    }
                 }
                 break;
             case "row3":
@@ -1277,7 +1282,10 @@ $(document).on("click touchstart", "#divHotspots0_row1", function (event) {
                     //$('.fbkmail2').attr("role", "link");
                     $('.fbkmail2').attr({ tabindex: 0});
                     $('.fbkmail2').closest("tr").removeAttr("tabindex");
-                    $('.fbkmail2').closest("tr").addClass("trdelete")
+                    $('.fbkmail2').closest("tr").addClass("trdelete");
+                    if(isIE11version){
+                        $('.fbkmail2').attr({ "role": "link", "aria-label": "From: Roger H (abc@westernabc.net)"});
+                    }
                 }
                 break;
             case "row4":
@@ -1287,7 +1295,10 @@ $(document).on("click touchstart", "#divHotspots0_row1", function (event) {
                     //$('.fbkmail3').attr("role", "link");
                     $('.fbkmail3').attr({ tabindex: 0});
                     $('.fbkmail3').closest("tr").removeAttr("tabindex");
-                    $('.fbkmail3').closest("tr").addClass("trdelete")
+                    $('.fbkmail3').closest("tr").addClass("trdelete");
+                    if(isIE11version){
+                        $('.fbkmail3').attr({"role": "link", "aria-label": "Subject: Re: Re: Re: Please read, very..."});
+                    }
                 }
                 break;
             case "row7":
@@ -1297,9 +1308,15 @@ $(document).on("click touchstart", "#divHotspots0_row1", function (event) {
                    // $('.fbkmail4').attr("role", "link");
                    // $('.fbkmail5').attr("role", "link");
                     $('.fbkmail4').attr({  tabindex: 0 });
+                    if(isIE11version){
+                        $('.fbkmail4').attr({"role": "link", "aria-label": "From: aw-confirm@ebay.com"});
+                    }
                     $('.fbkmail4').closest("tr").removeAttr("tabindex");
                     $('.fbkmail4').closest("tr").addClass("trdelete")
                     $('.fbkmail5').attr({  tabindex: 0 });
+                    if(isIE11version){
+                        $('.fbkmail5').attr({"role": "link", "aria-label": "Subject: Ebay Account Verification"});
+                    }
                     $('.fbkmail5').closest("tr").removeAttr("tabindex");
                     $('.fbkmail5').closest("tr").addClass("trdelete")
                 }
@@ -1311,9 +1328,15 @@ $(document).on("click touchstart", "#divHotspots0_row1", function (event) {
                    // $('.fbkmail6').attr("role", "link");
                     //$('.fbkmail10').attr("role", "link");
                     $('.fbkmail6').attr({  tabindex: 0 });
+                    if(isIE11version){
+                        $('.fbkmail6').attr({"role": "link", "aria-label": "Subject: Software Clearance Sale – Deal"});
+                    }
                     $('.fbkmail6').closest("tr").removeAttr("tabindex");
                     $('.fbkmail6').closest("tr").addClass("trdelete");
                     $('.fbkmail10').attr({  tabindex: 0 });
+                    if(isIE11version){
+                        $('.fbkmail10').attr({"role": "link", "aria-label": ""});
+                    }
                     $('.fbkmail10').closest("tr").removeAttr("tabindex");
                     $('.fbkmail10').closest("tr").addClass("trdelete")
                 }
@@ -1324,6 +1347,9 @@ $(document).on("click touchstart", "#divHotspots0_row1", function (event) {
                     checkMail6 = true;
                    // $('.fbkmail7').attr("role", "link");
                     $('.fbkmail7').attr({  tabindex: 0 });
+                    if(isIE11version){
+                        $('.fbkmail7').attr({"role": "link", "aria-label": "Subject: I need your help!"});
+                    }
                     $('.fbkmail7').closest("tr").removeAttr("tabindex");
                     $('.fbkmail7').closest("tr").addClass("trdelete")
                 }
@@ -1334,6 +1360,9 @@ $(document).on("click touchstart", "#divHotspots0_row1", function (event) {
                     checkMail7 = true;
                    // $('.fbkmail8').attr("role", "link");
                     $('.fbkmail8').attr({ tabindex: 0 });
+                    if(isIE11version){
+                        $('.fbkmail8').attr({"role": "link", "aria-label": "Subject: Make Money Now – Survey att..."});
+                    }
                     $('.fbkmail8').closest("tr").removeAttr("tabindex");
                     $('.fbkmail8').closest("tr").addClass("trdelete")
                 }
