@@ -232,7 +232,7 @@ var _Navigator = (function () {
                         $(".Email_instruction").html("Press Enter key to select an email and then press Shift + Double Enter to open an email.");
                     }
                     else if (isChrome || Firefox) {
-                        $(".Email_instruction").html("Press Shift + Enter key to select an email.  Press Shift + Double Enter to open an email");                    
+                        $(".Email_instruction").html("Press Enter key to select an email.  Press Shift + Double Enter to open an email");                    
                     }
                     else{
                     $(".Email_instruction").html("Press Enter key to select an email.  Press Double Enter to open an email");
