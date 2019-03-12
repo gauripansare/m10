@@ -1,7 +1,7 @@
 ﻿//This api will contain navigation logic and page load.
 //It will also handle the question navigation if the page is having multiple questions.
 var _Navigator = (function () {
-    var packageType = "";//presenter/scorm/revel
+    var packageType = "scorm";//presenter/scorm/revel
     var isReviewMode = false;
     var _currentPageId = "";
     var _currentPageObject = {};
@@ -231,9 +231,9 @@ var _Navigator = (function () {
                     if (isIE11version) {
                         $(".Email_instruction").html("Press Enter key to select an email and then press Shift + Double Enter to open an email.");
                     }
-                    else if (isChrome || Firefox) {
+                    else if (isChrome) {
                         $(".Email_instruction").html("Press Enter key to select an email.  Press Shift + Double Enter to open an email");                    
-                    }
+                    }                    
                     else{
                     $(".Email_instruction").html("Press Enter key to select an email.  Press Double Enter to open an email");
                     }
